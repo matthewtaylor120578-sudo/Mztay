@@ -7,28 +7,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Mulish:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --bg: #07080b;
-        --bg-card: #0f1218;
-        --line: #1d2230;
-        --line-strong: #2a3142;
-        --text: #e6e8ee;
-        --text-dim: #9aa3b2;
-        --text-mute: #6b7384;
-        --accent: #7cf4a6;
-        --accent-soft: rgba(124, 244, 166, 0.12);
-        --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-        --sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+        --pink: #ff4d68;
+        --magenta: #8f438d;
+        --cyan: #00b7a9;
+        --dark: #353535;
+        --mid: #595959;
+        --off: #ededed;
+        --white: #ffffff;
+        --sans: "Gilroy", "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+        --body-alt: "Avenir", "Avenir Next", "Mulish", var(--sans);
       }
       * { box-sizing: border-box; }
       html, body { margin: 0; padding: 0; }
       body {
-        background: #050609;
-        color: var(--text);
+        background: var(--off);
+        color: var(--dark);
         font-family: var(--sans);
         min-height: 100vh;
         display: flex;
@@ -43,143 +41,169 @@
         width: 100%;
         max-width: 720px;
         aspect-ratio: 8.5 / 11;
-        background: var(--bg);
-        border: 1px solid var(--line);
+        background: var(--white);
         border-radius: 14px;
         position: relative;
         overflow: hidden;
         padding: 56px 56px 48px;
         display: flex;
         flex-direction: column;
-        background-image:
-          radial-gradient(700px 400px at 100% 0%, rgba(124, 244, 166, 0.10), transparent 60%),
-          radial-gradient(500px 350px at 0% 100%, rgba(80, 120, 255, 0.06), transparent 60%);
+        box-shadow: 0 40px 120px -40px rgba(0, 0, 0, 0.25);
       }
-
-      .grid-bg {
+      .flyer::before {
+        content: "";
         position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-        background-size: 40px 40px;
-        mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 80%);
-        -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 80%);
+        top: -140px;
+        right: -120px;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(0, 183, 169, 0.18), transparent 70%);
         pointer-events: none;
       }
-
+      .flyer::after {
+        content: "";
+        position: absolute;
+        bottom: -140px;
+        left: -120px;
+        width: 380px;
+        height: 380px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 77, 104, 0.14), transparent 70%);
+        pointer-events: none;
+      }
       .flyer > * { position: relative; z-index: 1; }
 
+      /* Wordmark */
       .brand {
         display: inline-flex;
-        align-items: center;
-        gap: 10px;
+        align-items: baseline;
+        gap: 8px;
+        font-weight: 800;
+      }
+      .brand__wordmark {
+        display: inline-flex;
+        align-items: baseline;
+        font-size: 30px;
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+      .brand__p { color: var(--pink); }
+      .brand__c { color: var(--cyan); }
+      .brand__amp {
+        color: var(--dark);
+        font-weight: 500;
+        font-size: 0.68em;
+        margin: 0 1px;
+        position: relative;
+        top: -2px;
+      }
+      .brand__partners {
+        font-size: 11px;
         font-weight: 700;
-        letter-spacing: -0.01em;
-        font-size: 16px;
+        letter-spacing: 0.34em;
+        color: var(--cyan);
+        text-transform: uppercase;
       }
-      .brand__mark {
-        font-family: var(--mono);
-        color: var(--accent);
-        background: var(--accent-soft);
-        padding: 4px 8px;
-        border-radius: 6px;
-        font-size: 13px;
-        border: 1px solid rgba(124, 244, 166, 0.25);
-      }
-      .brand__amp { color: var(--text-mute); font-weight: 400; }
 
       .top {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-bottom: 24px;
-        border-bottom: 1px dashed var(--line-strong);
+        border-bottom: 2px solid var(--dark);
       }
       .top__meta {
-        font-family: var(--mono);
         font-size: 11px;
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.16em;
-        color: var(--text-mute);
+        letter-spacing: 0.22em;
+        color: var(--mid);
       }
 
       .eyebrow {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        font-family: var(--mono);
+        gap: 12px;
         font-size: 12px;
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.18em;
-        color: var(--text-dim);
-        margin-top: 48px;
+        letter-spacing: 0.26em;
+        color: var(--cyan);
+        margin-top: 52px;
       }
-      .eyebrow .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 14px var(--accent);
+      .eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 32px;
+        height: 2px;
+        background: var(--cyan);
       }
 
       h1 {
-        font-size: clamp(48px, 7vw, 78px);
+        font-size: clamp(48px, 7vw, 80px);
         font-weight: 800;
         letter-spacing: -0.03em;
-        line-height: 0.98;
-        margin: 18px 0 14px;
+        line-height: 0.96;
+        text-transform: uppercase;
+        margin: 20px 0 18px;
+        color: var(--dark);
       }
-      h1 .accent { color: var(--accent); }
+      h1 .accent-pink { color: var(--pink); }
+      h1 .accent-cyan { color: var(--cyan); }
 
       .lede {
         max-width: 520px;
-        color: var(--text-dim);
-        font-size: 17px;
-        margin: 0;
-      }
-
-      .details {
-        margin-top: auto;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        padding: 24px 0;
-        border-top: 1px dashed var(--line-strong);
-        border-bottom: 1px dashed var(--line-strong);
-      }
-      .details__label {
-        font-family: var(--mono);
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        color: var(--text-mute);
-        margin: 0 0 6px;
-      }
-      .details__value {
-        font-family: var(--mono);
+        color: var(--mid);
         font-size: 16px;
-        color: var(--text);
-        font-weight: 600;
         margin: 0;
-        letter-spacing: -0.01em;
+        font-family: var(--body-alt);
       }
 
       .topics {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin: 22px 0 0;
+        margin: 24px 0 0;
       }
       .chip {
-        font-family: var(--mono);
         font-size: 11px;
-        padding: 6px 10px;
-        border: 1px solid var(--line-strong);
+        font-weight: 700;
+        padding: 7px 12px;
+        border: 1.5px solid var(--dark);
         border-radius: 999px;
-        color: var(--text-dim);
+        color: var(--dark);
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.14em;
+      }
+      .chip--pink { border-color: var(--pink); color: var(--pink); }
+      .chip--cyan { border-color: var(--cyan); color: var(--cyan); }
+      .chip--magenta { border-color: var(--magenta); color: var(--magenta); }
+
+      .details {
+        margin-top: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 24px 0;
+        border-top: 2px solid var(--dark);
+        border-bottom: 2px solid var(--dark);
+      }
+      .details__label {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        color: var(--mid);
+        margin: 0 0 8px;
+      }
+      .details__value {
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--dark);
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
       }
 
       .cta {
@@ -190,62 +214,65 @@
         gap: 16px;
       }
       .cta__btn {
-        background: var(--accent);
-        color: #051a10;
-        padding: 14px 22px;
-        border-radius: 8px;
+        background: var(--pink);
+        color: var(--white);
+        padding: 16px 26px;
+        border-radius: 6px;
         font-weight: 700;
-        font-size: 15px;
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        box-shadow: 0 0 0 1px rgba(124, 244, 166, 0.3),
-                    0 12px 32px -16px rgba(124, 244, 166, 0.6);
+        box-shadow: 0 16px 40px -16px rgba(255, 77, 104, 0.55);
       }
       .cta__note {
-        font-family: var(--mono);
         font-size: 11px;
-        color: var(--text-mute);
+        font-weight: 700;
+        color: var(--mid);
         text-align: right;
         text-transform: uppercase;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.18em;
+        line-height: 1.5;
       }
 
       @media print {
         body { background: #fff; padding: 0; }
-        .flyer { border: none; box-shadow: none; }
+        .flyer { box-shadow: none; }
       }
     </style>
   </head>
   <body>
     <article class="flyer" role="img" aria-label="P&amp;C Partners Quiz Night flyer">
-      <div class="grid-bg" aria-hidden="true"></div>
-
       <header class="top">
         <a class="brand" href="#">
-          <span class="brand__mark">&gt;_</span>
-          <span>P&amp;C<span class="brand__amp"> / </span>Partners</span>
+          <span class="brand__wordmark" aria-hidden="true">
+            <span class="brand__p">P</span><span class="brand__amp">&amp;</span><span class="brand__c">C</span>
+          </span>
+          <span class="brand__partners">PARTNERS</span>
         </a>
-        <span class="top__meta">vol_01 &middot; spring '26</span>
+        <span class="top__meta">Vol 01 &middot; Spring '26</span>
       </header>
 
-      <p class="eyebrow"><span class="dot"></span> Quiz Night</p>
+      <p class="eyebrow">Quiz Night</p>
       <h1>
-        Underwriters<br />
-        vs. <span class="accent">Actuaries.</span>
+        MINDS<br />
+        <span class="accent-pink">AT</span><br />
+        <span class="accent-cyan">PLAY.</span>
       </h1>
       <p class="lede">
-        Five rounds. Three teams. One trophy. Test your P&amp;C knowledge across
-        pricing, claims, regulation, and a few questions we promise aren't
-        on any exam.
+        Five rounds. Six teams. One trophy. Bring the people who make your
+        business great — we'll bring the questions, the drinks, and a few
+        wildcards that nobody saw coming.
       </p>
 
       <div class="topics" aria-label="Quiz topics">
-        <span class="chip">Pricing</span>
-        <span class="chip">Claims</span>
-        <span class="chip">Reinsurance</span>
-        <span class="chip">Reg &amp; Compliance</span>
+        <span class="chip chip--pink">Culture</span>
+        <span class="chip chip--cyan">Careers</span>
+        <span class="chip chip--magenta">Leadership</span>
+        <span class="chip">Business</span>
         <span class="chip">Wildcard</span>
       </div>
 
@@ -259,8 +286,8 @@
           <p class="details__value">6:30 PM</p>
         </div>
         <div>
-          <p class="details__label">Location</p>
-          <p class="details__value">The Loft &middot; Floor 4</p>
+          <p class="details__label">Venue</p>
+          <p class="details__value">The Loft &middot; L4</p>
         </div>
       </dl>
 
@@ -269,7 +296,7 @@
           RSVP <span aria-hidden="true">→</span>
         </a>
         <p class="cta__note">
-          rsvp by may 09<br />
+          RSVP by May 09<br />
           pcpartners.example/quiz
         </p>
       </div>
