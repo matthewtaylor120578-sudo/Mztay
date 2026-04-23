@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>P&amp;C Partners — Quiz Night</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #07080b;
+        --bg-card: #0f1218;
+        --line: #1d2230;
+        --line-strong: #2a3142;
+        --text: #e6e8ee;
+        --text-dim: #9aa3b2;
+        --text-mute: #6b7384;
+        --accent: #7cf4a6;
+        --accent-soft: rgba(124, 244, 166, 0.12);
+        --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        --sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        background: #050609;
+        color: var(--text);
+        font-family: var(--sans);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .flyer {
+        width: 100%;
+        max-width: 720px;
+        aspect-ratio: 8.5 / 11;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        position: relative;
+        overflow: hidden;
+        padding: 56px 56px 48px;
+        display: flex;
+        flex-direction: column;
+        background-image:
+          radial-gradient(700px 400px at 100% 0%, rgba(124, 244, 166, 0.10), transparent 60%),
+          radial-gradient(500px 350px at 0% 100%, rgba(80, 120, 255, 0.06), transparent 60%);
+      }
+
+      .grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 80%);
+        -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 80%);
+        pointer-events: none;
+      }
+
+      .flyer > * { position: relative; z-index: 1; }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        font-size: 16px;
+      }
+      .brand__mark {
+        font-family: var(--mono);
+        color: var(--accent);
+        background: var(--accent-soft);
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 13px;
+        border: 1px solid rgba(124, 244, 166, 0.25);
+      }
+      .brand__amp { color: var(--text-mute); font-weight: 400; }
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 24px;
+        border-bottom: 1px dashed var(--line-strong);
+      }
+      .top__meta {
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-mute);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--text-dim);
+        margin-top: 48px;
+      }
+      .eyebrow .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 14px var(--accent);
+      }
+
+      h1 {
+        font-size: clamp(48px, 7vw, 78px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 0.98;
+        margin: 18px 0 14px;
+      }
+      h1 .accent { color: var(--accent); }
+
+      .lede {
+        max-width: 520px;
+        color: var(--text-dim);
+        font-size: 17px;
+        margin: 0;
+      }
+
+      .details {
+        margin-top: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        padding: 24px 0;
+        border-top: 1px dashed var(--line-strong);
+        border-bottom: 1px dashed var(--line-strong);
+      }
+      .details__label {
+        font-family: var(--mono);
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-mute);
+        margin: 0 0 6px;
+      }
+      .details__value {
+        font-family: var(--mono);
+        font-size: 16px;
+        color: var(--text);
+        font-weight: 600;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+
+      .topics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 22px 0 0;
+      }
+      .chip {
+        font-family: var(--mono);
+        font-size: 11px;
+        padding: 6px 10px;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        color: var(--text-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .cta {
+        margin-top: 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+      .cta__btn {
+        background: var(--accent);
+        color: #051a10;
+        padding: 14px 22px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 15px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 0 0 1px rgba(124, 244, 166, 0.3),
+                    0 12px 32px -16px rgba(124, 244, 166, 0.6);
+      }
+      .cta__note {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--text-mute);
+        text-align: right;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+
+      @media print {
+        body { background: #fff; padding: 0; }
+        .flyer { border: none; box-shadow: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <article class="flyer" role="img" aria-label="P&amp;C Partners Quiz Night flyer">
+      <div class="grid-bg" aria-hidden="true"></div>
+
+      <header class="top">
+        <a class="brand" href="#">
+          <span class="brand__mark">&gt;_</span>
+          <span>P&amp;C<span class="brand__amp"> / </span>Partners</span>
+        </a>
+        <span class="top__meta">vol_01 &middot; spring '26</span>
+      </header>
+
+      <p class="eyebrow"><span class="dot"></span> Quiz Night</p>
+      <h1>
+        Underwriters<br />
+        vs. <span class="accent">Actuaries.</span>
+      </h1>
+      <p class="lede">
+        Five rounds. Three teams. One trophy. Test your P&amp;C knowledge across
+        pricing, claims, regulation, and a few questions we promise aren't
+        on any exam.
+      </p>
+
+      <div class="topics" aria-label="Quiz topics">
+        <span class="chip">Pricing</span>
+        <span class="chip">Claims</span>
+        <span class="chip">Reinsurance</span>
+        <span class="chip">Reg &amp; Compliance</span>
+        <span class="chip">Wildcard</span>
+      </div>
+
+      <dl class="details">
+        <div>
+          <p class="details__label">Date</p>
+          <p class="details__value">Thu &middot; May 14</p>
+        </div>
+        <div>
+          <p class="details__label">Time</p>
+          <p class="details__value">6:30 PM</p>
+        </div>
+        <div>
+          <p class="details__label">Location</p>
+          <p class="details__value">The Loft &middot; Floor 4</p>
+        </div>
+      </dl>
+
+      <div class="cta">
+        <a class="cta__btn" href="#">
+          RSVP <span aria-hidden="true">→</span>
+        </a>
+        <p class="cta__note">
+          rsvp by may 09<br />
+          pcpartners.example/quiz
+        </p>
+      </div>
+    </article>
+  </body>
+</html>
