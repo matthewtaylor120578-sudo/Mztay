@@ -22,10 +22,15 @@
     <header class="m-nav">
       <div class="container m-nav__inner">
         <a class="m-brand m-brand--client" href="#top" aria-label="Dyno Nobel home">
-          <span class="m-brand__mark" aria-hidden="true">
-            <span class="m-brand__spark"></span>
+          <img
+            src="images/dyno-nobel-logo.png"
+            alt="Dyno Nobel"
+            class="m-brand__logo"
+            onerror="this.parentElement.classList.add('m-brand--fallback'); this.remove();"
+          />
+          <span class="m-brand__fallback" aria-hidden="true">
+            <span>DYNO</span><span>NOBEL</span>
           </span>
-          <span class="m-brand__name">DYNO <span class="m-brand__name-alt">NOBEL</span></span>
         </a>
         <span class="m-nav__partnership" aria-hidden="true">in partnership with</span>
         <a class="m-brand m-brand--partner" href="#" aria-label="P&amp;C Partners">
@@ -63,11 +68,10 @@
 
     <main id="main">
       <section class="m-hero" id="top">
-        <!-- Replace the photo URL below with your real team photograph -->
         <div
           class="m-hero__photo"
           aria-hidden="true"
-          style="background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&amp;fit=crop&amp;w=2200&amp;q=80');"
+          style="background-image: url('images/pc-team.jpg');"
         ></div>
 
         <div class="m-hero__band">
@@ -76,10 +80,17 @@
               <span class="m-hero__pc">P&amp;C Partners</span>
               <span class="m-hero__pc-thin">are proud to be partnering with</span>
             </p>
-            <span class="m-hero__client-logo" aria-label="Dyno Nobel">
-              <span>DYNO</span>
-              <span>NOBEL</span>
-            </span>
+            <picture class="m-hero__client-logo">
+              <img
+                src="images/dyno-nobel-logo-white.png"
+                alt="Dyno Nobel"
+                onerror="this.parentElement.classList.add('m-hero__client-logo--fallback'); this.remove();"
+              />
+              <span class="m-hero__client-logo-fallback" aria-hidden="true">
+                <span>DYNO</span>
+                <span>NOBEL</span>
+              </span>
+            </picture>
           </div>
         </div>
 
@@ -390,11 +401,16 @@
     <footer class="m-footer">
       <div class="container m-footer__split">
         <div class="m-footer__col m-footer__col--client">
-          <a class="m-brand m-brand--client" href="#top">
-            <span class="m-brand__mark" aria-hidden="true">
-              <span class="m-brand__spark"></span>
+          <a class="m-brand m-brand--client m-brand--on-dark" href="#top">
+            <img
+              src="images/dyno-nobel-logo-white.png"
+              alt="Dyno Nobel"
+              class="m-brand__logo"
+              onerror="this.parentElement.classList.add('m-brand--fallback'); this.remove();"
+            />
+            <span class="m-brand__fallback" aria-hidden="true">
+              <span>DYNO</span><span>NOBEL</span>
             </span>
-            <span class="m-brand__name">DYNO <span class="m-brand__name-alt">NOBEL</span></span>
           </a>
           <p>
             Global leader in commercial explosives and blasting services. Safely
