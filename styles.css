@@ -740,76 +740,117 @@ p { margin: 0 0 1em; color: var(--text-dim); }
 
 .m-accent-yellow { color: var(--dyno-yellow); }
 
-/* Hero — client-branded, bold, dark */
+/* Hero — photo-led partnership announcement
+   Pattern: team photo background, translucent band at top with
+   "P&C Partners are proud to be partnering with [CLIENT]",
+   scroll-in content at bottom */
 .m-hero {
   position: relative;
-  padding: 128px 0 112px;
-  background: var(--dyno-black);
+  min-height: 680px;
+  background: #1a1f2a;
   color: var(--white);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.m-hero::before {
+.m-hero__photo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.m-hero__photo::after {
   content: "";
   position: absolute;
-  top: -200px; right: -180px;
-  width: 620px; height: 620px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 194, 14, 0.2), transparent 70%);
-  pointer-events: none;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 22, 34, 0.15) 0%,
+    rgba(16, 22, 34, 0.45) 55%,
+    rgba(16, 22, 34, 0.85) 100%
+  );
 }
-.m-hero::after {
-  content: "";
-  position: absolute;
-  bottom: -140px; left: -100px;
-  width: 400px; height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 183, 169, 0.12), transparent 70%);
-  pointer-events: none;
+
+/* Translucent partnership band */
+.m-hero__band {
+  position: relative;
+  z-index: 2;
+  background: rgba(28, 38, 56, 0.68);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 26px 0;
 }
-.m-hero__inner { position: relative; z-index: 1; }
-.m-hero__title {
-  font-size: clamp(44px, 8vw, 104px);
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  font-weight: 800;
-  line-height: 0.96;
-  margin: 0 0 28px;
+.m-hero__band-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.m-hero__partnership {
+  margin: 0;
+  font-size: clamp(18px, 2.2vw, 26px);
+  line-height: 1.3;
   color: var(--white);
+  font-family: var(--body-alt);
+}
+.m-hero__pc {
+  font-weight: 800;
+  font-family: var(--sans);
+  letter-spacing: -0.01em;
+}
+.m-hero__pc-thin {
+  font-weight: 400;
+  opacity: 0.9;
+  margin-left: 4px;
+}
+.m-hero__client-logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 0.9;
+  font-family: var(--sans);
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--white);
+  text-align: right;
+}
+
+/* Hero bottom content */
+.m-hero__bottom {
+  position: relative;
+  z-index: 2;
+  padding: 64px 28px 72px;
+  display: grid;
+  grid-template-columns: 1.4fr auto;
+  gap: 40px;
+  align-items: end;
+}
+.m-hero__title {
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+  font-weight: 800;
+  color: var(--white);
+  text-transform: none;
 }
 .m-hero__lead {
-  font-size: 19px;
-  max-width: 640px;
-  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  max-width: 560px;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.82);
   font-family: var(--body-alt);
 }
 .m-hero__cta {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
-  margin: 40px 0 64px;
-}
-.m-hero__stats {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 32px;
-  max-width: 900px;
-  padding: 36px 0 0;
-  border-top: 2px solid var(--dyno-yellow);
-  margin: 0;
-}
-.m-hero__stats dt {
-  font-size: clamp(28px, 3.5vw, 40px);
-  font-weight: 800;
-  color: var(--dyno-yellow);
-  letter-spacing: -0.03em;
-}
-.m-hero__stats dd {
-  margin: 8px 0 0;
-  font-size: 12px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.65);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
+  gap: 12px;
 }
 
 /* About (P&C side — pink accent lives here to balance the brand) */
@@ -1106,10 +1147,13 @@ p { margin: 0 0 1em; color: var(--text-dim); }
 @media (max-width: 680px) {
   .m-nav__links, .m-nav__cta, .m-nav__partnership { display: none; }
   .m-brand--partner .brand__partners { display: none; }
-  .m-hero { padding: 80px 0 72px; }
+  .m-hero { min-height: 560px; }
+  .m-hero__band { padding: 18px 0; }
+  .m-hero__band-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .m-hero__client-logo { align-items: flex-start; text-align: left; -webkit-text-stroke-width: 1.2px; }
+  .m-hero__bottom { grid-template-columns: 1fr; gap: 24px; padding: 48px 20px 56px; align-items: start; }
   .m-about, .m-why, .m-roles, .m-process, .m-cta { padding: 72px 0; }
   .m-voice { padding: 72px 0; }
-  .m-hero__stats { grid-template-columns: 1fr; gap: 20px; }
   .m-process__steps { grid-template-columns: 1fr; }
   .m-footer__bottom { flex-direction: column; align-items: flex-start; }
 }
