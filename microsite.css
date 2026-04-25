@@ -18,7 +18,7 @@
   --pc-red: #FF4D68;
   --pc-cyan: #00B7A9;
   --pc-purple: #8F438D;
-  --pc-gradient: linear-gradient(135deg, #FF4D68, #8F438D);
+  --pc-gradient: linear-gradient(135deg, #FF4D68 0%, #8F438D 50%, #00B7A9 100%);
 
   /* ---- Backgrounds ---- */
   --bg-primary: #0D1B33;
@@ -30,7 +30,7 @@
   --text-body: #A0B4CC;
 
   /* ---- Type stack ---- */
-  --font-sans: 'Gilroy', 'Calibri', Arial, sans-serif;
+  --font-sans: 'Gilroy', 'Avenir', Arial, sans-serif;
 
   /* ---- Layout ---- */
   --max-width: 1280px;
@@ -285,12 +285,14 @@ p {
 }
 
 .hero__lockup-pc {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: clamp(13px, 1vw, 15px);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--dn-white);
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero__lockup-pc img {
+  display: block;
+  height: clamp(28px, 3vw, 36px);
+  width: auto;
 }
 
 .hero__lockup-x {
