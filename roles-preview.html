@@ -201,36 +201,35 @@
         }
       }
 
-      /* Co-brand lockup top-right */
-      .page-header {
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 10;
-        padding: clamp(22px, 3vh, 36px) var(--gutter);
+      /* Co-brand lockup — sits in the head right column, above the intro */
+      .roles__right {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(20px, 3vh, 32px);
+        align-self: end;
       }
 
-      .page-header__lockup {
+      .roles__lockup {
         display: flex;
         align-items: center;
-        gap: clamp(16px, 2.4vw, 32px);
+        gap: clamp(16px, 2.2vw, 28px);
       }
 
-      .page-header__pc,
-      .page-header__dn {
+      .roles__lockup-pc,
+      .roles__lockup-dn {
         display: block;
-        height: clamp(34px, 3.2vw, 46px);
+        height: clamp(30px, 2.8vw, 40px);
         width: auto;
       }
 
-      .page-header__dn {
+      .roles__lockup-dn {
         /* Source navy logo rendered pure white */
         filter: brightness(0) invert(1);
       }
 
-      @media (max-width: 680px) {
-        .page-header__pc,
-        .page-header__dn {
+      @media (max-width: 768px) {
+        .roles__lockup-pc,
+        .roles__lockup-dn {
           height: 28px;
         }
       }
@@ -238,21 +237,6 @@
   </head>
 
   <body>
-    <header class="page-header">
-      <div class="page-header__lockup">
-        <img
-          class="page-header__pc"
-          src="assets/pc_logo_white.svg"
-          alt="P&amp;C Partners"
-        />
-        <img
-          class="page-header__dn"
-          src="assets/dyno_nobel_navy.png"
-          alt="Dyno Nobel"
-        />
-      </div>
-    </header>
-
     <main>
       <section class="roles">
         <div class="roles__head">
@@ -263,11 +247,25 @@
               opportunities.
             </h1>
           </div>
-          <p class="roles__intro">
-            Foundational finance and risk leadership roles, hired exclusively
-            through P&amp;C Partners as Dyno Nobel establishes its new global
-            head office.
-          </p>
+          <div class="roles__right">
+            <div class="roles__lockup" aria-label="P&amp;C Partners and Dyno Nobel">
+              <img
+                class="roles__lockup-pc"
+                src="assets/pc_logo_white.svg"
+                alt="P&amp;C Partners"
+              />
+              <img
+                class="roles__lockup-dn"
+                src="assets/dyno_nobel_navy.png"
+                alt="Dyno Nobel"
+              />
+            </div>
+            <p class="roles__intro">
+              Foundational finance and risk leadership roles, hired exclusively
+              through P&amp;C Partners as Dyno Nobel establishes its new global
+              head office.
+            </p>
+          </div>
         </div>
 
         <ol class="roles__list">
