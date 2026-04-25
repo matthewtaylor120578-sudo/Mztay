@@ -12,19 +12,30 @@
     />
 
     <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
-    <link rel="stylesheet" href="microsite.css?v=10" />
+    <link rel="stylesheet" href="microsite.css?v=11" />
   </head>
 
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <main id="main">
-      <section class="hero" id="hero">
+      <section class="hero" id="hero" data-photo-hold="20000">
         <div
           class="hero__photo"
           style="background-image: url('assets/pc_team.jpg');"
           aria-hidden="true"
         ></div>
+        <video
+          class="hero__video"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="assets/pc_team.jpg"
+          aria-hidden="true"
+        >
+          <source src="assets/video/dyno_01.mp4" type="video/mp4" />
+        </video>
         <div class="hero__veil" aria-hidden="true"></div>
 
         <div class="hero__band">
@@ -154,6 +165,22 @@
 
     <script>
       (() => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Hero: hold the team photo for N ms, then crossfade to the hero video
+        const hero = document.querySelector('.hero[data-photo-hold]');
+        if (hero && !reduceMotion) {
+          const holdMs = parseInt(hero.dataset.photoHold, 10) || 20000;
+          const video = hero.querySelector('.hero__video');
+          if (video) {
+            setTimeout(() => {
+              video.play().catch(() => {});
+              hero.classList.add('is-video-active');
+            }, holdMs);
+          }
+        }
+
+        // Scroll-triggered video sections: play only while in view
         const videos = document.querySelectorAll('video[data-autoplay-on-view]');
         if (!('IntersectionObserver' in window)) {
           videos.forEach((v) => v.play().catch(() => {}));
