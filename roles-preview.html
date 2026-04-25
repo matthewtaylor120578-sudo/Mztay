@@ -15,8 +15,9 @@
          Roles — vertical editorial index
          ============================================================ */
       .roles {
+        --lockup-space: clamp(44px, 6vh, 72px);
         background: var(--dn-steel);
-        padding-block: 0 clamp(96px, 14vh, 160px);
+        padding-block: var(--lockup-space) clamp(96px, 14vh, 160px);
         position: relative;
       }
 
@@ -210,15 +211,12 @@
         align-self: end;
       }
 
-      /* Co-brand lockup — lives at the top of the section in normal flow,
-         with matching top/bottom margins so whitespace above = whitespace
-         below the logos. */
+      /* Co-brand lockup — sits at the top of the section.
+         Space above comes from the section's padding-top (var --lockup-space),
+         space below comes from this element's margin-bottom (same variable),
+         so whitespace above = whitespace below. */
       .roles__lockup {
-        --lockup-space: clamp(44px, 6vh, 72px);
-        margin-top: var(--lockup-space);
-        margin-bottom: var(--lockup-space);
-        margin-left: auto;
-        margin-right: var(--gutter);
+        margin: 0 var(--gutter) var(--lockup-space) auto;
         width: fit-content;
         display: flex;
         align-items: center;
