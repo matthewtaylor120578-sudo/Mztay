@@ -12,7 +12,7 @@
     />
 
     <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
-    <link rel="stylesheet" href="microsite.css?v=6" />
+    <link rel="stylesheet" href="microsite.css?v=7" />
   </head>
 
   <body>
@@ -20,11 +20,19 @@
 
     <main id="main">
       <section class="hero" id="hero">
-        <div
-          class="hero__photo"
-          style="background-image: url('assets/pc_team.jpg');"
+        <video
+          class="hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="assets/pc_team.jpg"
           aria-hidden="true"
-        ></div>
+        >
+          <source src="assets/video/dyno_01.mp4" type="video/mp4" />
+        </video>
+        <div class="hero__veil" aria-hidden="true"></div>
 
         <div class="hero__band">
           <div class="container hero__band-inner">
@@ -44,7 +52,7 @@
           </div>
         </div>
 
-        <a class="hero__scroll" href="#main" aria-label="Scroll to content">
+        <a class="hero__scroll" href="#about" aria-label="Scroll to content">
           <span class="label">Scroll</span>
           <span class="hero__scroll-line" aria-hidden="true"></span>
         </a>
