@@ -19,49 +19,32 @@
     <a class="skip-link" href="#main">Skip to content</a>
 
     <main id="main">
-      <section class="section section--alt hero" id="hero">
-        <div class="container hero__inner">
+      <section class="hero" id="hero">
+        <div
+          class="hero__photo"
+          style="background-image: url('assets/pc_team.jpg');"
+          aria-hidden="true"
+        ></div>
 
-          <header class="hero__lockup" aria-label="P&amp;C Partners and Dyno Nobel partnership">
-            <a href="https://pandcpartners.com.au" class="hero__lockup-pc" aria-label="P&amp;C Partners">
-              <img src="assets/pc_logo_white.svg" alt="P&amp;C Partners" />
-            </a>
-            <span class="hero__lockup-x" aria-hidden="true">&times;</span>
-            <picture class="hero__lockup-dn">
-              <source srcset="assets/dyno_nobel_navy.webp" type="image/webp" />
-              <img
-                src="assets/dyno_nobel_navy.png"
-                alt="Dyno Nobel"
-                onerror="this.parentElement.classList.add('hero__lockup-dn--fallback'); this.remove();"
-              />
-              <span class="hero__lockup-dn-fallback" aria-hidden="true">Dyno Nobel</span>
-            </picture>
-          </header>
-
-          <div class="hero__core">
-            <span class="label hero__eyebrow">Executive Search Partnership &middot; 2026</span>
-            <h1 class="hero__title">
-              A global<br />
-              headquarters,<br />
-              built in<br />
-              Brisbane.
+        <div class="hero__band">
+          <div class="container hero__band-inner">
+            <h1 class="hero__statement">
+              <span class="hero__statement-bold">P&amp;C Partners</span>
+              <span class="hero__statement-light">
+                are proud to be partnering with
+              </span>
             </h1>
-            <p class="hero__lead">
-              P&amp;C Partners is Dyno Nobel's executive search partner for the
-              relocation of its global headquarters to Brisbane, and for the
-              leadership team that will define what comes next.
-            </p>
+            <picture class="hero__client-logo">
+              <source srcset="assets/dyno_nobel_navy.webp" type="image/webp" />
+              <img src="assets/dyno_nobel_navy.png" alt="Dyno Nobel" />
+            </picture>
           </div>
-
-          <footer class="hero__meta">
-            <span class="label">Brisbane &middot; Australia</span>
-            <a class="label hero__scroll" href="#main" aria-label="Scroll to next section">
-              Scroll
-              <span class="hero__scroll-line" aria-hidden="true"></span>
-            </a>
-          </footer>
-
         </div>
+
+        <a class="hero__scroll" href="#main" aria-label="Scroll to content">
+          <span class="label">Scroll</span>
+          <span class="hero__scroll-line" aria-hidden="true"></span>
+        </a>
       </section>
     </main>
   </body>
