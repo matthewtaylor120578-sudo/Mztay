@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0D1B33" />
 
-    <title>Dyno Nobel &times; P&amp;C Partners — Executive Search</title>
+    <title>Dyno Nobel and P&amp;C Partners &middot; Executive Search</title>
     <meta
       name="description"
       content="P&C Partners is Dyno Nobel's executive search partner for the relocation of its global headquarters to Brisbane."
     />
 
     <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
-    <link rel="stylesheet" href="microsite.css?v=7" />
+    <link rel="stylesheet" href="microsite.css?v=8" />
   </head>
 
   <body>
@@ -28,6 +28,7 @@
           playsinline
           preload="auto"
           poster="assets/pc_team.jpg"
+          data-autoplay-on-view
           aria-hidden="true"
         >
           <source src="assets/video/dyno_01.mp4" type="video/mp4" />
@@ -57,60 +58,130 @@
           <span class="hero__scroll-line" aria-hidden="true"></span>
         </a>
       </section>
-      <section class="section about" id="about">
-        <div class="container about__inner">
 
-          <div class="about__head">
-            <span class="label about__label">01 / About Dyno Nobel</span>
-            <h2 class="about__title">
-              180 years<br />
-              of moving<br />
-              the world.
-            </h2>
-          </div>
-
-          <div class="about__body">
+      <section class="section section--video" id="about">
+        <video
+          class="section__video"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          data-autoplay-on-view
+          aria-hidden="true"
+        >
+          <source src="assets/video/dyno_02.mp4" type="video/mp4" />
+        </video>
+        <div class="section__veil" aria-hidden="true"></div>
+        <div class="container section__content">
+          <span class="section__eyebrow">01 &middot; About Dyno Nobel</span>
+          <h2 class="section__title">
+            180 years.<br />
+            Six continents.<br />
+            One legacy.
+          </h2>
+          <div class="section__body">
             <p>
-              From Alfred Nobel's pioneering work to a focused, independent
-              ASX-listed entity, Dyno Nobel (ASX: DNL) is a global leader in
-              commercial explosives, blasting systems, and mining services,
-              servicing major mining and infrastructure customers across six
-              continents.
+              Dyno Nobel (ASX: DNL) is a global leader in commercial
+              explosives, blasting systems and mining services. With a history
+              dating back 180 years to the pioneering work of Alfred Nobel,
+              Dyno Nobel services major mining and infrastructure customers
+              across six continents.
             </p>
             <p>
               Following the demerger of its fertilisers business and the
-              rebranding of Incitec Pivot as Dyno Nobel, the company is now a
-              focused, independent ASX-listed entity with a clear mandate to
-              accelerate operational excellence, innovation, and strategic
-              growth.
-            </p>
-            <p>
-              The business is supported by a world-class team of engineers,
-              operators, and corporate professionals working together to drive
-              transformation and performance across every level of the
-              organisation.
+              rebrand from Incitec Pivot, Dyno Nobel is now a focused,
+              independent ASX-listed entity with a clear mandate to accelerate
+              operational excellence, innovation, and strategic growth.
             </p>
           </div>
-
         </div>
+      </section>
 
-        <div class="container about__meta">
-          <dl>
-            <div>
-              <dt>ASX</dt>
-              <dd>DNL</dd>
-            </div>
-            <div>
-              <dt>180</dt>
-              <dd>Years of heritage</dd>
-            </div>
-            <div>
-              <dt>6</dt>
-              <dd>Continents served</dd>
-            </div>
-          </dl>
+      <section class="section section--video" id="brisbane">
+        <video
+          class="section__video"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          data-autoplay-on-view
+          aria-hidden="true"
+        >
+          <source src="assets/video/dyno_03.mp4" type="video/mp4" />
+        </video>
+        <div class="section__veil" aria-hidden="true"></div>
+        <div class="container section__content">
+          <span class="section__eyebrow">02 &middot; Brisbane based opportunities</span>
+          <h2 class="section__title">
+            A new home.<br />
+            A new team.<br />
+            In Brisbane.
+          </h2>
+          <div class="section__body">
+            <p>
+              As Dyno Nobel transitions its head office to Brisbane, a number
+              of finance and risk positions are now available locally. These
+              roles represent an important step in establishing Dyno Nobel's
+              Brisbane presence and building a finance team fit for the next
+              phase of growth.
+            </p>
+            <p>
+              Dyno Nobel has partnered exclusively with P&amp;C Partners to
+              lead this search, ensuring a rigorous, market-wide process for
+              every role.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--contact" id="contact">
+        <div class="container section__content section__content--centered">
+          <span class="section__eyebrow">03 &middot; Get in touch</span>
+          <h2 class="section__title">
+            Let's talk.<br />
+            <span class="section__title-accent">In confidence.</span>
+          </h2>
+          <div class="section__body">
+            <p>
+              The P&amp;C Partners team is here to answer questions, provide
+              further information, or have a confidential discussion about any
+              of these opportunities.
+            </p>
+          </div>
+          <div class="section__cta">
+            <a class="btn btn--primary" href="assets/dyno_nobel_eoi_pack.pdf" download>
+              Download candidate pack
+            </a>
+            <a class="btn btn--ghost" href="mailto:hello@pandcpartners.com.au">
+              hello@pandcpartners.com.au
+            </a>
+          </div>
         </div>
       </section>
     </main>
+
+    <script>
+      (() => {
+        const videos = document.querySelectorAll('video[data-autoplay-on-view]');
+        if (!('IntersectionObserver' in window)) {
+          videos.forEach((v) => v.play().catch(() => {}));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const v = entry.target;
+              if (entry.isIntersecting) {
+                v.play().catch(() => {});
+              } else {
+                v.pause();
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        videos.forEach((v) => io.observe(v));
+      })();
+    </script>
   </body>
 </html>
