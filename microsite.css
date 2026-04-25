@@ -290,17 +290,23 @@ p {
 /* ---- Statement ---- */
 .hero__statement {
   margin: 0;
-  max-width: 560px;
+  max-width: 620px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 18px;
   text-transform: none;
   letter-spacing: -0.005em;
   line-height: 1.25;
-  font-size: clamp(20px, 2.1vw, 30px);
-  color: var(--dn-white);
+  font-size: clamp(18px, 1.9vw, 26px);
+  color: rgba(255, 255, 255, 0.92);
   font-weight: 400;
 }
 
-.hero__statement-bold {
-  font-weight: 700;
+.hero__statement-logo {
+  display: block;
+  height: clamp(48px, 5.5vw, 72px);
+  width: auto;
 }
 
 .hero__statement-light {
@@ -309,16 +315,13 @@ p {
 
 /* ---- Client logo ---- */
 .hero__client-logo {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.hero__client-logo img {
   display: block;
+  flex-shrink: 0;
   height: clamp(48px, 5.5vw, 76px);
   width: auto;
-  /* Source is navy; render white on the dark band */
+  /* Source is navy on transparent.  brightness(0) collapses every
+     opaque pixel to black (preserving alpha), then invert(1) flips
+     black to white.  Result: pure white logo on transparent bg. */
   filter: brightness(0) invert(1);
 }
 
