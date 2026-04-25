@@ -54,10 +54,18 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+section,
+.section,
+.hero {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 
 html,
@@ -221,6 +229,7 @@ p {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+    scroll-snap-type: none;
   }
 
   *,
