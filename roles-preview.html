@@ -201,27 +201,57 @@
         }
       }
 
-      /* Preview-only banner so you know this is a mock */
-      .preview-bar {
-        position: sticky;
+      /* Co-brand lockup top-right */
+      .page-header {
+        position: absolute;
         top: 0;
-        z-index: 100;
-        background: var(--pc-gradient);
-        color: var(--dn-white);
-        padding: 10px 20px;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        text-align: center;
+        right: 0;
+        z-index: 10;
+        padding: clamp(22px, 3vh, 36px) var(--gutter);
+      }
+
+      .page-header__lockup {
+        display: flex;
+        align-items: center;
+        gap: clamp(16px, 2.4vw, 32px);
+      }
+
+      .page-header__pc,
+      .page-header__dn {
+        display: block;
+        height: clamp(34px, 3.2vw, 46px);
+        width: auto;
+      }
+
+      .page-header__dn {
+        /* Source navy logo rendered pure white */
+        filter: brightness(0) invert(1);
+      }
+
+      @media (max-width: 680px) {
+        .page-header__pc,
+        .page-header__dn {
+          height: 28px;
+        }
       }
     </style>
   </head>
 
   <body>
-    <div class="preview-bar">
-      Layout preview &middot; Editorial roles index
-    </div>
+    <header class="page-header">
+      <div class="page-header__lockup">
+        <img
+          class="page-header__pc"
+          src="assets/pc_logo_white.svg"
+          alt="P&amp;C Partners"
+        />
+        <img
+          class="page-header__dn"
+          src="assets/dyno_nobel_navy.png"
+          alt="Dyno Nobel"
+        />
+      </div>
+    </header>
 
     <main>
       <section class="roles">
