@@ -253,7 +253,7 @@ p {
   position: absolute;
   inset: 0;
   background-size: cover;
-  background-position: center;
+  background-position: center 75%;
   background-repeat: no-repeat;
   z-index: 0;
 }
