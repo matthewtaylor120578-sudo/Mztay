@@ -271,6 +271,16 @@ p {
   filter: saturate(0.9);
 }
 
+/* Photo hero variant — full-bleed image, top-cropped so the team is lower in frame */
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 75%;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
 /* Veil sits above the video, below content — for type legibility */
 .hero__veil {
   position: absolute;
