@@ -17,6 +17,7 @@
       .roles {
         background: var(--dn-steel);
         padding-block: clamp(96px, 14vh, 160px);
+        position: relative;
       }
 
       .roles__head {
@@ -201,7 +202,7 @@
         }
       }
 
-      /* Co-brand lockup — sits in the head right column, above the intro */
+      /* Right column still holds the intro paragraph */
       .roles__right {
         display: flex;
         flex-direction: column;
@@ -209,16 +210,21 @@
         align-self: end;
       }
 
+      /* Co-brand lockup — pinned to top-right of the section */
       .roles__lockup {
+        position: absolute;
+        top: clamp(24px, 3.5vh, 44px);
+        right: var(--gutter);
         display: flex;
         align-items: center;
-        gap: clamp(16px, 2.2vw, 28px);
+        gap: clamp(20px, 2.6vw, 36px);
+        z-index: 10;
       }
 
       .roles__lockup-pc,
       .roles__lockup-dn {
         display: block;
-        height: clamp(30px, 2.8vw, 40px);
+        height: clamp(48px, 4.6vw, 72px);
         width: auto;
       }
 
@@ -228,9 +234,12 @@
       }
 
       @media (max-width: 768px) {
+        .roles__lockup {
+          top: 20px;
+        }
         .roles__lockup-pc,
         .roles__lockup-dn {
-          height: 28px;
+          height: 36px;
         }
       }
     </style>
@@ -239,6 +248,19 @@
   <body>
     <main>
       <section class="roles">
+        <div class="roles__lockup" aria-label="P&amp;C Partners and Dyno Nobel">
+          <img
+            class="roles__lockup-pc"
+            src="assets/pc_logo_white.svg"
+            alt="P&amp;C Partners"
+          />
+          <img
+            class="roles__lockup-dn"
+            src="assets/dyno_nobel_navy.png"
+            alt="Dyno Nobel"
+          />
+        </div>
+
         <div class="roles__head">
           <div>
             <span class="roles__eyebrow">Currently hiring &middot; 04 Roles</span>
@@ -248,18 +270,6 @@
             </h1>
           </div>
           <div class="roles__right">
-            <div class="roles__lockup" aria-label="P&amp;C Partners and Dyno Nobel">
-              <img
-                class="roles__lockup-pc"
-                src="assets/pc_logo_white.svg"
-                alt="P&amp;C Partners"
-              />
-              <img
-                class="roles__lockup-dn"
-                src="assets/dyno_nobel_navy.png"
-                alt="Dyno Nobel"
-              />
-            </div>
             <p class="roles__intro">
               Foundational finance and risk leadership roles, hired exclusively
               through P&amp;C Partners as Dyno Nobel establishes its new global
