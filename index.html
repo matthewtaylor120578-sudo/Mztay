@@ -12,30 +12,19 @@
     />
 
     <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
-    <link rel="stylesheet" href="microsite.css?v=11" />
+    <link rel="stylesheet" href="microsite.css?v=12" />
   </head>
 
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <main id="main">
-      <section class="hero" id="hero" data-photo-hold="20000">
+      <section class="hero" id="hero">
         <div
           class="hero__photo"
           style="background-image: url('assets/pc_team.jpg');"
           aria-hidden="true"
         ></div>
-        <video
-          class="hero__video"
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          poster="assets/pc_team.jpg"
-          aria-hidden="true"
-        >
-          <source src="assets/video/dyno_01.mp4" type="video/mp4" />
-        </video>
         <div class="hero__veil" aria-hidden="true"></div>
 
         <div class="hero__band">
@@ -66,10 +55,10 @@
         <video
           class="section__video"
           muted
-          loop
           playsinline
           preload="metadata"
           data-autoplay-on-view
+          data-clip-segments="0-12,20-30"
           aria-hidden="true"
         >
           <source src="assets/video/dyno_02.mp4" type="video/mp4" />
@@ -165,23 +154,37 @@
 
     <script>
       (() => {
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Apply clip-segment looping (e.g. play 0-12, then 20-30, then repeat)
+        // Reads `data-clip-segments="0-12,20-30"` and stitches segments seamlessly.
+        const applyClipSegments = (video) => {
+          const raw = video.dataset.clipSegments;
+          if (!raw) return;
+          const segments = raw
+            .split(',')
+            .map((s) => s.split('-').map(Number))
+            .filter(([a, b]) => Number.isFinite(a) && Number.isFinite(b) && b > a);
+          if (!segments.length) return;
 
-        // Hero: hold the team photo for N ms, then crossfade to the hero video
-        const hero = document.querySelector('.hero[data-photo-hold]');
-        if (hero && !reduceMotion) {
-          const holdMs = parseInt(hero.dataset.photoHold, 10) || 20000;
-          const video = hero.querySelector('.hero__video');
-          if (video) {
-            setTimeout(() => {
-              video.play().catch(() => {});
-              hero.classList.add('is-video-active');
-            }, holdMs);
-          }
-        }
+          const reset = () => {
+            video.currentTime = segments[0][0];
+          };
+          video.addEventListener('loadedmetadata', reset, { once: true });
 
-        // Scroll-triggered video sections: play only while in view
+          video.addEventListener('timeupdate', () => {
+            const t = video.currentTime;
+            // If we're inside any segment, do nothing.
+            const inside = segments.some(([s, e]) => t >= s && t < e);
+            if (inside) return;
+            // Outside all segments: jump to the next one, or loop to the first.
+            const next = segments.find(([s]) => s > t);
+            video.currentTime = next ? next[0] : segments[0][0];
+          });
+        };
+
+        // Scroll-triggered videos: play only while in view
         const videos = document.querySelectorAll('video[data-autoplay-on-view]');
+        videos.forEach(applyClipSegments);
+
         if (!('IntersectionObserver' in window)) {
           videos.forEach((v) => v.play().catch(() => {}));
           return;
