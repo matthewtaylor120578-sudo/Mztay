@@ -16,7 +16,7 @@
          ============================================================ */
       .roles {
         background: var(--dn-steel);
-        padding-block: clamp(96px, 14vh, 160px);
+        padding-block: 0 clamp(96px, 14vh, 160px);
         position: relative;
       }
 
@@ -210,15 +210,19 @@
         align-self: end;
       }
 
-      /* Co-brand lockup — pinned to top-right of the section */
+      /* Co-brand lockup — lives at the top of the section in normal flow,
+         with matching top/bottom margins so whitespace above = whitespace
+         below the logos. */
       .roles__lockup {
-        position: absolute;
-        top: clamp(44px, 6vh, 72px);
-        right: var(--gutter);
+        --lockup-space: clamp(44px, 6vh, 72px);
+        margin-top: var(--lockup-space);
+        margin-bottom: var(--lockup-space);
+        margin-left: auto;
+        margin-right: var(--gutter);
+        width: fit-content;
         display: flex;
         align-items: center;
         gap: clamp(20px, 2.6vw, 36px);
-        z-index: 10;
       }
 
       .roles__lockup-pc,
