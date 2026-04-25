@@ -15,9 +15,10 @@
          Roles — vertical editorial index
          ============================================================ */
       .roles {
-        --lockup-space: clamp(96px, 12vh, 160px);
+        --lockup-top: clamp(72px, 9vh, 112px);
+        --lockup-gap: clamp(36px, 4.5vh, 64px);
         background: var(--dn-steel);
-        padding-block: var(--lockup-space) clamp(96px, 14vh, 160px);
+        padding-block: var(--lockup-top) clamp(96px, 14vh, 160px);
         position: relative;
       }
 
@@ -216,7 +217,7 @@
          space below comes from this element's margin-bottom (same variable),
          so whitespace above = whitespace below. */
       .roles__lockup {
-        margin: 0 var(--gutter) var(--lockup-space) auto;
+        margin: 0 var(--gutter) var(--lockup-gap) auto;
         width: fit-content;
         display: flex;
         align-items: center;
