@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0D1B33" />
+
+    <title>Roles preview &middot; Dyno Nobel x P&amp;C Partners</title>
+
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
+    <link rel="stylesheet" href="microsite.css?v=12" />
+
+    <style>
+      /* ============================================================
+         Roles — vertical editorial index
+         ============================================================ */
+      .roles {
+        background: var(--bg-alternate);
+        padding-block: clamp(96px, 14vh, 160px);
+      }
+
+      .roles__head {
+        max-width: var(--max-width);
+        margin: 0 auto clamp(48px, 8vh, 96px);
+        padding-inline: var(--gutter);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(28px, 4vw, 64px);
+        align-items: end;
+      }
+
+      .roles__eyebrow {
+        display: inline-block;
+        font-family: var(--font-sans);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 12px;
+        color: var(--pc-cyan);
+        margin-bottom: clamp(20px, 3vh, 32px);
+      }
+
+      .roles__title {
+        font-family: var(--font-sans);
+        font-weight: 700;
+        text-transform: none;
+        letter-spacing: -0.01em;
+        line-height: 0.96;
+        font-size: clamp(40px, 6vw, 84px);
+        color: var(--dn-white);
+        margin: 0;
+      }
+
+      .roles__intro {
+        font-size: clamp(15px, 1.1vw, 18px);
+        line-height: 1.85;
+        color: var(--text-body);
+        max-width: 480px;
+        margin: 0;
+        align-self: end;
+      }
+
+      .roles__list {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding-inline: var(--gutter);
+        list-style: none;
+      }
+
+      .role {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: clamp(20px, 3vh, 36px) clamp(40px, 6vw, 96px);
+        padding-block: clamp(48px, 8vh, 84px);
+        border-top: 1px solid rgba(160, 180, 204, 0.18);
+        align-items: start;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        transition: padding 0.3s ease;
+      }
+
+      .role:hover {
+        padding-inline-start: 12px;
+      }
+
+      .role:hover::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 56px;
+        background: var(--pc-gradient);
+      }
+
+      .role__head {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        font-family: var(--font-sans);
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--text-body);
+      }
+
+      .role__num {
+        color: var(--pc-cyan);
+      }
+
+      .role__title {
+        grid-column: 1;
+        font-family: var(--font-sans);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        font-size: clamp(36px, 5.5vw, 76px);
+        line-height: 0.95;
+        color: var(--dn-white);
+        margin: 0;
+      }
+
+      .role__right {
+        grid-column: 2;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(20px, 3vh, 32px);
+        max-width: 460px;
+      }
+
+      .role__summary {
+        font-size: clamp(15px, 1.1vw, 17px);
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.78);
+        margin: 0;
+      }
+
+      .role__apply {
+        font-family: var(--font-sans);
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--dn-white);
+        padding-top: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        display: inline-flex;
+        gap: 14px;
+        align-items: center;
+        width: fit-content;
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .role__apply-arrow {
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+
+      .role:hover .role__apply {
+        color: var(--pc-cyan);
+        border-top-color: var(--pc-cyan);
+      }
+
+      .role:hover .role__apply-arrow {
+        transform: translateX(6px);
+      }
+
+      .roles__foot {
+        max-width: var(--max-width);
+        margin: clamp(48px, 8vh, 96px) auto 0;
+        padding: clamp(32px, 5vh, 56px) var(--gutter) 0;
+        border-top: 1px solid rgba(160, 180, 204, 0.18);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .roles__foot p {
+        margin: 0;
+        font-size: 14px;
+        color: var(--text-body);
+      }
+
+      @media (max-width: 768px) {
+        .roles__head {
+          grid-template-columns: 1fr;
+        }
+        .role {
+          grid-template-columns: 1fr;
+        }
+        .role__title,
+        .role__right {
+          grid-column: 1;
+        }
+      }
+
+      /* Preview-only banner so you know this is a mock */
+      .preview-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--pc-gradient);
+        color: var(--dn-white);
+        padding: 10px 20px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="preview-bar">
+      Layout preview &middot; Editorial roles index
+    </div>
+
+    <main>
+      <section class="roles">
+        <div class="roles__head">
+          <div>
+            <span class="roles__eyebrow">Currently hiring &middot; 04 Roles</span>
+            <h1 class="roles__title">
+              The Brisbane<br />
+              opportunities.
+            </h1>
+          </div>
+          <p class="roles__intro">
+            Foundational finance and risk leadership roles, hired exclusively
+            through P&amp;C Partners as Dyno Nobel establishes its new global
+            head office.
+          </p>
+        </div>
+
+        <ol class="roles__list">
+          <li>
+            <a class="role" href="#">
+              <header class="role__head">
+                <span class="role__num">01 &middot; Finance</span>
+                <span class="role__loc">Brisbane &middot; Permanent</span>
+              </header>
+              <h2 class="role__title">Chief Financial Officer</h2>
+              <div class="role__right">
+                <p class="role__summary">
+                  A foundational hire reporting to the CEO, accountable for the
+                  full finance function as Dyno Nobel establishes its
+                  Brisbane HQ. ASX-listed experience essential.
+                </p>
+                <span class="role__apply">
+                  Apply with P&amp;C
+                  <span class="role__apply-arrow" aria-hidden="true">&rarr;</span>
+                </span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="role" href="#">
+              <header class="role__head">
+                <span class="role__num">02 &middot; Finance &amp; Treasury</span>
+                <span class="role__loc">Brisbane &middot; Permanent</span>
+              </header>
+              <h2 class="role__title">Group Treasurer</h2>
+              <div class="role__right">
+                <p class="role__summary">
+                  Lead capital strategy, debt portfolio, and FX for an
+                  ASX-listed business operating across six continents. Reports
+                  to the CFO.
+                </p>
+                <span class="role__apply">
+                  Apply with P&amp;C
+                  <span class="role__apply-arrow" aria-hidden="true">&rarr;</span>
+                </span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="role" href="#">
+              <header class="role__head">
+                <span class="role__num">03 &middot; Risk</span>
+                <span class="role__loc">Brisbane &middot; Permanent</span>
+              </header>
+              <h2 class="role__title">Director, Risk</h2>
+              <div class="role__right">
+                <p class="role__summary">
+                  Build and lead the enterprise risk function across mining,
+                  manufacturing, and corporate operations on six continents.
+                </p>
+                <span class="role__apply">
+                  Apply with P&amp;C
+                  <span class="role__apply-arrow" aria-hidden="true">&rarr;</span>
+                </span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="role" href="#">
+              <header class="role__head">
+                <span class="role__num">04 &middot; Finance</span>
+                <span class="role__loc">Brisbane &middot; Permanent</span>
+              </header>
+              <h2 class="role__title">Head of FP&amp;A</h2>
+              <div class="role__right">
+                <p class="role__summary">
+                  Drive performance reporting, forecasting, and decision
+                  support for the executive team. A high-impact seat at the
+                  table from day one.
+                </p>
+                <span class="role__apply">
+                  Apply with P&amp;C
+                  <span class="role__apply-arrow" aria-hidden="true">&rarr;</span>
+                </span>
+              </div>
+            </a>
+          </li>
+        </ol>
+
+        <div class="roles__foot">
+          <p>Don't see your role? Send your CV in confidence.</p>
+          <a class="btn btn--ghost" href="mailto:info@pandcpartners.com.au">
+            info@pandcpartners.com.au
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
