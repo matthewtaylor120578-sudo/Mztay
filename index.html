@@ -322,6 +322,16 @@
 
     <script>
       (() => {
+        // Always start at the top on a fresh load — overrides browser
+        // scroll-position restoration so visitors don't get dropped
+        // wherever they last scrolled to.
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        if (!location.hash) {
+          window.scrollTo(0, 0);
+        }
+
         // Apply clip-segment looping (e.g. play 0-12, then 20-30, then repeat)
         // Reads `data-clip-segments="0-12,20-30"` and stitches segments seamlessly.
         const applyClipSegments = (video) => {
