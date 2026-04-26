@@ -634,6 +634,11 @@ p {
   transition: opacity 1.6s ease, transform 1.6s ease;
 }
 
+/* Slower, more deliberate fade on the contact page */
+.section--contact[data-reveal-at] .section__content {
+  transition: opacity 3.2s ease, transform 3.2s ease;
+}
+
 [data-reveal-at].is-revealed .section__content {
   opacity: 1;
   transform: translateY(0);
