@@ -12,7 +12,7 @@
     />
 
     <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
-    <link rel="stylesheet" href="microsite.css?v=14" />
+    <link rel="stylesheet" href="microsite.css?v=15" />
   </head>
 
   <body>
@@ -196,6 +196,29 @@
             video.currentTime = next ? next[0] : segments[0][0];
           });
         };
+
+        // Reveal contact-section content when the video reaches the 5s mark.
+        // Tying the reveal to video time (not wall clock) means buffering or
+        // stalled playback won't make the text appear over the wrong frame.
+        const contactSection = document.getElementById('contact');
+        const contactVideo = contactSection?.querySelector('video');
+        if (contactSection && contactVideo) {
+          const reveal = () => contactSection.classList.add('is-revealed');
+          let revealed = false;
+          contactVideo.addEventListener('timeupdate', () => {
+            if (!revealed && contactVideo.currentTime >= 5) {
+              revealed = true;
+              reveal();
+            }
+          });
+          // Fallback if the video can't load at all: reveal after 5s wall time
+          setTimeout(() => {
+            if (!revealed) {
+              revealed = true;
+              reveal();
+            }
+          }, 6000);
+        }
 
         // Scroll-triggered videos: play only while in view
         const videos = document.querySelectorAll('video[data-autoplay-on-view]');

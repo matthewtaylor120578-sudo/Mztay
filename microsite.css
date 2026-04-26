@@ -624,6 +624,27 @@ p {
   );
 }
 
+/* Delayed-reveal content: starts hidden, fades in when the section
+   adds .is-revealed (driven by JS at the video's 5-second mark) */
+.section--contact .section__content {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 1.6s ease, transform 1.6s ease;
+}
+
+.section--contact.is-revealed .section__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section--contact .section__content {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ================================================================
    05. Buttons
    ================================================================ */
