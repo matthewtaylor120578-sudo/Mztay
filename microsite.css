@@ -813,14 +813,17 @@ p {
   padding-inline-start: 12px;
 }
 
-.role:hover::before {
+.role__title {
+  position: relative;
+}
+
+.role:hover .role__title::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  left: -12px;
+  top: 0;
+  bottom: 0;
   width: 3px;
-  height: 56px;
   background: var(--pc-gradient);
 }
 
