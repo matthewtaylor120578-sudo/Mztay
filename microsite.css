@@ -923,3 +923,30 @@ p {
   .role__title, .role__right { grid-column: 1; }
   .roles__lockup-pc, .roles__lockup-dn { height: 44px; }
 }
+
+/* Re-frame the transformation video so its burned-in watermark in the
+   bottom-right crops out of view.  Scaling from left-centre means the
+   left edge stays put while the right edge over-extends and clips. */
+#transformation .section__video {
+  transform: scale(1.16);
+  transform-origin: left center;
+}
+
+/* Light vignette on the bottom-right just to soften any residual
+   trace of the watermark after the crop. */
+#transformation::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 28%;
+  height: 24%;
+  background: radial-gradient(
+    ellipse at bottom right,
+    rgba(13, 27, 51, 0.55) 0%,
+    rgba(13, 27, 51, 0.25) 55%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
