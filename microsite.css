@@ -376,11 +376,6 @@ p {
 }
 
 @media (max-width: 680px) {
-  /* Hero photo — zoom and re-anchor so the team is centred, less ceiling */
-  .hero__photo {
-    transform: scale(1.35);
-    transform-origin: 50% 70%;
-  }
   .hero__band-inner {
     flex-direction: column;
     align-items: flex-start;
@@ -651,22 +646,6 @@ p {
   );
 }
 
-/* On mobile the contact video gets cropped tighter and the burned-in
-   DYNO NOBEL letters bleed through. Mute the video harder + heavier
-   veil so the message stays the priority. Desktop is untouched. */
-@media (max-width: 680px) {
-  .section--contact .section__video--subtle {
-    filter: saturate(0.4) brightness(0.32);
-  }
-  .section--contact .section__veil--strong {
-    background: linear-gradient(
-      180deg,
-      rgba(8, 14, 24, 0.86) 0%,
-      rgba(8, 14, 24, 0.92) 50%,
-      rgba(8, 14, 24, 0.96) 100%
-    );
-  }
-}
 
 /* Delayed-reveal content: starts hidden, fades in when JS adds
    .is-revealed (driven by the section's video reaching the time on
