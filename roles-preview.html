@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0D1B33" />
+
+    <title>Roles preview &middot; Dyno Nobel x P&amp;C Partners</title>
+
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
+    <link rel="stylesheet" href="microsite.css?v=12" />
+
+    <style>
+      /* ============================================================
+         Roles — vertical editorial index
+         ============================================================ */
+      .roles {
+        --lockup-top: clamp(48px, 6vh, 80px);
+        --lockup-gap: clamp(24px, 3vh, 44px);
+        background: var(--dn-steel);
+        padding-block: var(--lockup-top) clamp(96px, 14vh, 160px);
+        position: relative;
+      }
+
+      .roles__head {
+        max-width: var(--max-width);
+        margin: 0 auto clamp(48px, 8vh, 96px);
+        padding-inline: var(--gutter);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(28px, 4vw, 64px);
+        align-items: end;
+      }
+
+      .roles__eyebrow {
+        display: inline-block;
+        font-family: var(--font-sans);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 12px;
+        color: var(--pc-cyan);
+        margin-bottom: clamp(20px, 3vh, 32px);
+      }
+
+      .roles__title {
+        font-family: var(--font-sans);
+        font-weight: 700;
+        text-transform: none;
+        letter-spacing: -0.01em;
+        line-height: 0.96;
+        font-size: clamp(40px, 6vw, 84px);
+        color: var(--dn-white);
+        margin: 0;
+      }
+
+      .roles__intro {
+        font-size: clamp(15px, 1.1vw, 18px);
+        line-height: 1.85;
+        color: var(--text-body);
+        max-width: 480px;
+        margin: 0;
+        align-self: end;
+      }
+
+      .roles__list {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding-inline: var(--gutter);
+        list-style: none;
+      }
+
+      .role {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: clamp(20px, 3vh, 36px) clamp(40px, 6vw, 96px);
+        padding-block: clamp(48px, 8vh, 84px);
+        border-top: 1px solid rgba(160, 180, 204, 0.18);
+        align-items: start;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        transition: padding 0.3s ease;
+      }
+
+      .role:hover {
+        padding-inline-start: 12px;
+      }
+
+      .role:hover::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 56px;
+        background: var(--pc-gradient);
+      }
+
+      .role__head {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        font-family: var(--font-sans);
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--text-body);
+      }
+
+      .role__num {
+        color: var(--pc-cyan);
+      }
+
+      .role__title {
+        grid-column: 1;
+        font-family: var(--font-sans);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: -0.005em;
+        font-size: clamp(26px, 3.4vw, 48px);
+        line-height: 1;
+        color: var(--dn-white);
+        margin: 0;
+      }
+
+      .role__right {
+        grid-column: 2;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(20px, 3vh, 32px);
+        max-width: 460px;
+      }
+
+      .role__summary {
+        font-size: clamp(15px, 1.1vw, 17px);
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.78);
+        margin: 0;
+      }
+
+      .role__apply {
+        font-family: var(--font-sans);
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--dn-white);
+        padding-top: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        display: inline-flex;
+        gap: 14px;
+        align-items: center;
+        width: fit-content;
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .role__apply-arrow {
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+
+      .role:hover .role__apply {
+        color: var(--pc-cyan);
+        border-top-color: var(--pc-cyan);
+      }
+
+      .role:hover .role__apply-arrow {
+        transform: translateX(6px);
+      }
+
+      .roles__foot {
+        max-width: var(--max-width);
+        margin: clamp(48px, 8vh, 96px) auto 0;
+        padding: clamp(32px, 5vh, 56px) var(--gutter) 0;
+        border-top: 1px solid rgba(160, 180, 204, 0.18);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .roles__foot p {
+        margin: 0;
+        font-size: 14px;
+        color: var(--text-body);
+      }
+
+      @media (max-width: 768px) {
+        .roles__head {
+          grid-template-columns: 1fr;
+        }
+        .role {
+          grid-template-columns: 1fr;
+        }
+        .role__title,
+        .role__right {
+          grid-column: 1;
+        }
+      }
+
+      /* Right column still holds the intro paragraph */
+      .roles__right {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(20px, 3vh, 32px);
+        align-self: end;
+      }
+
+      /* Co-brand lockup — sits at the top of the section.
+         Space above comes from the section's padding-top (var --lockup-space),
+         space below comes from this element's margin-bottom (same variable),
+         so whitespace above = whitespace below. */
+      .roles__lockup {
+        margin: 0 var(--gutter) var(--lockup-gap) auto;
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        gap: clamp(20px, 2.6vw, 36px);
+      }
+
+      .roles__lockup-pc,
+      .roles__lockup-dn {
+        display: block;
+        height: clamp(60px, 5.6vw, 92px);
+        width: auto;
+      }
+
+      .roles__lockup-dn {
+        /* Source navy logo rendered pure white */
+        filter: brightness(0) invert(1);
+      }
+
+      @media (max-width: 768px) {
+        .roles__lockup-pc,
+        .roles__lockup-dn {
+          height: 44px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <section class="roles">
+        <div class="roles__lockup" aria-label="P&amp;C Partners and Dyno Nobel">
+          <img
+            class="roles__lockup-pc"
+            src="assets/pc_logo_white.svg"
+            alt="P&amp;C Partners"
+          />
+          <img
+            class="roles__lockup-dn"
+            src="assets/dyno_nobel_navy.png"
+            alt="Dyno Nobel"
+          />
+        </div>
+
+        <div class="roles__head">
+          <div>
+            <span class="roles__eyebrow">Currently hiring &middot; 05 Roles</span>
+            <h1 class="roles__title">
+              The Brisbane<br />
+              opportunities.
+            </h1>
+          </div>
+          <div class="roles__right">
+            <p class="roles__intro">
+              Foundational finance and risk leadership roles, hired exclusively
+              through P&amp;C Partners as Dyno Nobel establishes its new global
+              head office.
+            </p>
+          </div>
+        </div>
+
+        <ol class="roles__list">
+          <li>
+            <a class="role" href="mailto:info@pandcpartners.com.au?subject=Application%20for%20Manager%20Group%20Capital">
+              <header class="role__head">
+                <span class="role__num">01 &middot; Global Finance</span>
+                <span class="role__loc">Fortitude Valley, Brisbane &middot; Permanent</span>
+              </header>
+              <h2 class="role__title">Manager Group Capital</h2>
+              <div class="role__right">
+                <p class="role__summary">
+                  Oversee Dyno Nobel's global capital planning, governance, and
+                  investment evaluation. This role ensures that capital is
+                  allocated strategically, governance frameworks are robust, and
+                  investment decisions are grounded in commercial insight.
+                </p>
+                <span class="role__apply">
+                  Apply with P&amp;C
+                  <span class="role__apply-arrow" aria-hidden="true">&rarr;</span>
+                </span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="role" href="mailto:info@pandcpartners.com.au?subject=Application%20for%20Finance%20Operations%20Analyst">
+              <header class="role__head">
+                <span class="role__num">02 &middot; Finance, DNAP</span>
+                <span class="role__loc">Fortitude Valley, Brisbane &middot; Permanent</span>
+              </header>
+              <h2 class="role__title">Finance Operations Analyst</h2>
+              <div class="role__right">
+                <p class="role__summary">
+                  Manage financial planning, reporting, and cost control for
+                  Australian manufacturing plants. Collaborate with stakeholders
+                  to ensure accurate budgeting, forecasting, and financial
+                  analysis aligned with the strategic objectives of the
+                  business.
+                </p>
+                <span class="role__apply">
+                  Apply with P&amp;C
+                  <span class="role__apply-arrow" aria-hidden="true">&rarr;</span>
+                </span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="role" href="mailto:info@pandcpartners.com.au?subject=Application%20for%20Senior%20Tax%20Analyst">
+              <header class="role__head">
+                <span class="role__num">03 &middot; Global Finance</span>
+                <span class="role__loc">Fortitude Valley, Brisbane &middot; Permanent</span>
+              </header>
+              <h2 class="role__title">Senior Tax Analyst</h2>
+              <div class="role__right">
+                <p class="role__summary">
+                  Deliver high-quality tax reporting, compliance, and advisory
+                  support across the business. A broad, hands-on role suited to
+                  a technically strong tax professional looking to deepen their
+                  corporate exposure.
+                </p>
+                <span class="role__apply">
+                  Apply with P&amp;C
+                  <span class="role__apply-arrow" aria-hidden="true">&rarr;</span>
+                </span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="role" href="mailto:info@pandcpartners.com.au?subject=Application%20for%20Risk%20Management%20Analyst">
+              <header class="role__head">
+                <span class="role__num">04 &middot; Global Risk</span>
+                <span class="role__loc">Fortitude Valley, Brisbane &middot; Permanent</span>
+              </header>
+              <h2 class="role__title">Risk Management Analyst</h2>
+              <div class="role__right">
+                <p class="role__summary">
+                  The technical and data engine of the team. Risk reporting,
+                  systems administration, dashboard development, and supporting
+                  enterprise-wide decision-making with high-quality, data-led
+                  insights.
+                </p>
+                <span class="role__apply">
+                  Apply with P&amp;C
+                  <span class="role__apply-arrow" aria-hidden="true">&rarr;</span>
+                </span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="role" href="mailto:info@pandcpartners.com.au?subject=Application%20for%20Senior%20Manager%20Enterprise%20Risk">
+              <header class="role__head">
+                <span class="role__num">05 &middot; Global Risk</span>
+                <span class="role__loc">Fortitude Valley, Brisbane &middot; Permanent</span>
+              </header>
+              <h2 class="role__title">Senior Manager,<br />Enterprise Risk</h2>
+              <div class="role__right">
+                <p class="role__summary">
+                  As Dyno Nobel transitions into a standalone, globally
+                  integrated explosives business, the enterprise risk function
+                  is being rebuilt from the ground up. Reporting to the VP, Risk
+                  and Insurance Global, this role will help shape how Dyno Nobel
+                  identifies, manages, and leverages risk to support
+                  performance, growth, and governance.
+                </p>
+                <span class="role__apply">
+                  Apply with P&amp;C
+                  <span class="role__apply-arrow" aria-hidden="true">&rarr;</span>
+                </span>
+              </div>
+            </a>
+          </li>
+        </ol>
+
+        <div class="roles__foot">
+          <p>Don't see your role? Send your CV in confidence.</p>
+          <a class="btn btn--ghost" href="mailto:info@pandcpartners.com.au">
+            info@pandcpartners.com.au
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
