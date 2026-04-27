@@ -57,6 +57,7 @@
           autoplay
           muted
           playsinline
+          webkit-playsinline
           preload="auto"
           data-autoplay-on-view
           data-clip-segments="0-12,20-30"
@@ -97,6 +98,7 @@
           muted
           loop
           playsinline
+          webkit-playsinline
           preload="auto"
           data-autoplay-on-view
           aria-hidden="true"
@@ -515,6 +517,7 @@
           muted
           loop
           playsinline
+          webkit-playsinline
           preload="auto"
           data-autoplay-on-view
           aria-hidden="true"
@@ -658,12 +661,21 @@
           videos.forEach((v) => v.play().catch(() => {}));
           return;
         }
+        // Track which videos failed to autoplay (e.g. iOS Low Power Mode,
+        // Reduce Motion, or strict autoplay block) so we can resume them
+        // on the first user gesture.
+        const blocked = new Set();
+        const tryPlay = (v) =>
+          v.play().catch(() => {
+            blocked.add(v);
+          });
+
         const io = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               const v = entry.target;
               if (entry.isIntersecting) {
-                v.play().catch(() => {});
+                tryPlay(v);
               } else {
                 v.pause();
               }
@@ -672,6 +684,20 @@
           { threshold: 0.2 }
         );
         videos.forEach((v) => io.observe(v));
+
+        // Tap-to-play fallback: on first user gesture, retry any video
+        // that couldn't autoplay. Covers iOS Safari autoplay blocks.
+        const resumeBlocked = () => {
+          blocked.forEach((v) => {
+            v.play().then(() => blocked.delete(v)).catch(() => {});
+          });
+          videos.forEach((v) => {
+            if (v.paused) v.play().catch(() => {});
+          });
+        };
+        ['touchstart', 'pointerdown', 'click'].forEach((ev) =>
+          document.addEventListener(ev, resumeBlocked, { passive: true })
+        );
       })();
     </script>
   </body>
