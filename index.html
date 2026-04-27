@@ -322,25 +322,53 @@
 
     <script>
       (() => {
-        // Always start at the top on a fresh load — overrides browser
-        // scroll-position restoration so visitors don't get dropped
-        // wherever they last scrolled to.  iOS Safari needs the
-        // pageshow handler too because its bfcache ignores the
-        // scrollRestoration hint on bookmark/back-forward navigation.
+        // Force the page to land on the hero on every load.
+        // iOS Safari's bfcache + scroll-snap conspire to snap to
+        // wherever the user last was, so we have to be aggressive:
+        //  1. tell the browser not to restore scroll
+        //  2. drop scroll-snap during the early window
+        //  3. force-scroll multiple times across the load lifecycle
+        //  4. drop any stale hash that isn't pointing to the hero
         if ('scrollRestoration' in history) {
           history.scrollRestoration = 'manual';
         }
-        const goToTopUnlessHash = () => {
-          if (!location.hash) {
+
+        const targetHashes = new Set(['', '#hero', '#top']);
+        if (!targetHashes.has(location.hash)) {
+          history.replaceState(null, '', location.pathname + location.search);
+        }
+
+        const root = document.documentElement;
+        const previousSnap = root.style.scrollSnapType;
+        root.style.scrollSnapType = 'none';
+
+        const forceTop = () => {
+          if (targetHashes.has(location.hash)) {
             window.scrollTo(0, 0);
+            root.scrollTop = 0;
+            if (document.body) document.body.scrollTop = 0;
           }
         };
-        goToTopUnlessHash();
-        window.addEventListener('pageshow', goToTopUnlessHash);
+
+        forceTop();
+        requestAnimationFrame(forceTop);
+        [0, 50, 150, 350].forEach((delay) => setTimeout(forceTop, delay));
+
+        // Restore scroll-snap once we're settled at the top.
+        setTimeout(() => {
+          root.style.scrollSnapType = previousSnap;
+        }, 500);
+
+        window.addEventListener('pageshow', () => {
+          root.style.scrollSnapType = 'none';
+          forceTop();
+          setTimeout(() => {
+            root.style.scrollSnapType = previousSnap;
+          }, 300);
+        });
+
         window.addEventListener('load', () => {
-          // Run again after layout so anything that grew the page
-          // post-load doesn't drop us elsewhere.
-          requestAnimationFrame(goToTopUnlessHash);
+          requestAnimationFrame(forceTop);
         });
 
         // Apply clip-segment looping (e.g. play 0-12, then 20-30, then repeat)
