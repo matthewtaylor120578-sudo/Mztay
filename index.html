@@ -12,7 +12,7 @@
     />
 
     <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
-    <link rel="stylesheet" href="microsite.css?v=24" />
+    <link rel="stylesheet" href="microsite.css?v=25" />
   </head>
 
   <body>
@@ -51,7 +51,7 @@
         </a>
       </section>
 
-      <section class="section section--video" id="about" data-reveal-at="5">
+      <section class="section section--video" id="about">
         <video
           class="section__video"
           autoplay
@@ -90,7 +90,7 @@
         </div>
       </section>
 
-      <section class="section section--video" id="transformation" data-reveal-at="5">
+      <section class="section section--video" id="transformation">
         <video
           class="section__video"
           autoplay
@@ -280,7 +280,7 @@
         </div>
       </section>
 
-      <section class="section section--contact" id="contact" data-reveal-at="6">
+      <section class="section section--contact" id="contact">
         <video
           class="section__video section__video--subtle"
           autoplay
@@ -398,28 +398,29 @@
           });
         };
 
-        // Delayed reveal: any section with data-reveal-at="N" stays hidden
-        // until its video crosses N seconds, then fades in. Tying reveal to
-        // video time (not wall clock) keeps text + footage in sync if the
-        // video buffers. A wall-clock fallback fires shortly after, so a
-        // failed video can't trap the text.
-        document.querySelectorAll('[data-reveal-at]').forEach((section) => {
-          const at = parseFloat(section.dataset.revealAt);
-          if (!Number.isFinite(at) || at < 0) return;
-          const video = section.querySelector('video');
-          let revealed = false;
-          const reveal = () => {
-            if (revealed) return;
-            revealed = true;
-            section.classList.add('is-revealed');
-          };
-          if (video) {
-            video.addEventListener('timeupdate', () => {
-              if (video.currentTime >= at) reveal();
-            });
-          }
-          setTimeout(reveal, (at + 1) * 1000);
-        });
+        // Scroll-driven fade for each section's content.
+        // The trigger zone is the middle 50% of the viewport, so a
+        // section "is-in-view" when its content sits in the middle
+        // band of the screen.  Scroll past, class is removed, content
+        // fades back down.  Works for sections of any height.
+        const fadeSections = document.querySelectorAll('.hero, .section, .roles');
+        if ('IntersectionObserver' in window) {
+          const fadeObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-in-view');
+                } else {
+                  entry.target.classList.remove('is-in-view');
+                }
+              });
+            },
+            { rootMargin: '-25% 0px -25% 0px', threshold: 0 }
+          );
+          fadeSections.forEach((s) => fadeObserver.observe(s));
+        } else {
+          fadeSections.forEach((s) => s.classList.add('is-in-view'));
+        }
 
         // Scroll-triggered videos: play only while in view
         const videos = document.querySelectorAll('video[data-autoplay-on-view]');

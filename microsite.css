@@ -647,28 +647,39 @@ p {
 }
 
 
-/* Delayed-reveal content: starts hidden, fades in when JS adds
-   .is-revealed (driven by the section's video reaching the time on
-   data-reveal-at, in seconds). Opt in by adding data-reveal-at="5"
-   to any <section>. */
-[data-reveal-at] .section__content {
+/* Scroll-driven fade.  Each section's content (and the hero band,
+   and the roles list) starts dimmed and slid down a touch.  When
+   the section reaches the middle of the viewport, JS adds
+   .is-in-view to the section element and the content fades up.
+   Scroll past, observer removes the class, content fades back down. */
+.section__content,
+.hero__band,
+.roles__lockup,
+.roles__head,
+.roles__list,
+.roles__foot {
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 1.6s ease, transform 1.6s ease;
+  transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
-/* Slower, more deliberate fade on the contact page */
-.section--contact[data-reveal-at] .section__content {
-  transition: opacity 5s ease, transform 5s ease;
-}
-
-[data-reveal-at].is-revealed .section__content {
+.is-in-view .section__content,
+.is-in-view .hero__band,
+.is-in-view .roles__lockup,
+.is-in-view .roles__head,
+.is-in-view .roles__list,
+.is-in-view .roles__foot {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal-at] .section__content {
+  .section__content,
+  .hero__band,
+  .roles__lockup,
+  .roles__head,
+  .roles__list,
+  .roles__foot {
     opacity: 1;
     transform: none;
     transition: none;
