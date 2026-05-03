@@ -74,3 +74,170 @@ Jack Gullo	Search Principal
 Marie Eslick	Search Associate
 ---
 These guidelines apply to all outputs generated in this repository. When in doubt, favour clean, high-contrast layouts using the Gilroy typeface and the P&C pink-purple-teal gradient palette.
+
+---
+
+# Career Guide Website — Project Plan
+
+A career guide microsite for P&C Partners that hosts executive-search content for candidates: salary benchmarks, interview prep, negotiation, counter-offer guidance, and a leadership playbook.
+
+## Tech Stack
+
+- Framework: Next.js 14 (App Router)
+- Language: TypeScript
+- Styling: Tailwind CSS
+- Components: shadcn/ui
+- Package manager: npm
+- Fonts: Gilroy (CDN/font service) with Avenir, Arial, sans-serif fallbacks
+- Theme: Dark, slate-950 background (matches existing sticky-scroll component)
+
+## Pages (App Router)
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Home. Hero plus overview cards linking to each guide section. |
+| `/salary-guide` | Salary benchmarks. Two lookup modes: by company size (revenue band) or by percentile (25th / 50th / 75th / 95th). |
+| `/interview-tips` | Interview preparation guidance for executive candidates. |
+| `/salary-negotiation` | How to negotiate offers professionally. |
+| `/counter-offer-advice` | Handling counter-offers from current employers. |
+| `/executive-playbook` | Leadership playbook for senior hires. |
+
+Every page follows the same shape: hero section, content sections, CTA block.
+
+## Salary Guide — Lookup Modes
+
+The `/salary-guide` page offers two ways to review salaries. The user picks one via a tab/toggle at the top of the content area.
+
+- **Currency:** all figures shown in Australian dollars (AUD). Formatted as `A$120,000` (no decimals).
+- **Sectors covered (v1):** Finance & Accounting, Technology. The user picks a sector first, then a job title within that sector.
+- **Data source:** salary numbers supplied by P&C and dropped into `data/salaries.ts`. The UI is built against the schema with placeholder values until real data lands.
+
+### Mode 1: By company size (revenue)
+
+- User picks a sector (Finance & Accounting or Technology).
+- User picks a job title within that sector (searchable select).
+- User picks a company-size band by annual revenue. Proposed bands:
+  - Under $10M
+  - $10M–$50M
+  - $50M–$250M
+  - $250M–$1B
+  - $1B+
+- Result panel shows the salary range (low / mid / high) for that role at that company size, plus typical bonus/STI and any notes.
+
+### Mode 2: By percentile
+
+- User picks a sector (Finance & Accounting or Technology).
+- User picks a job title within that sector.
+- User picks a percentile: 25th, 50th, 75th, or 95th.
+- Result panel shows the single salary figure at the chosen percentile, with a short explainer of what the percentile means (for example: 75th percentile is paid more than 75% of the market).
+
+### Data shape (placeholder)
+
+Salary data lives in a typed JSON file (e.g. `data/salaries.ts`) keyed by job title, with both shapes per role:
+
+```ts
+type Sector = 'finance-accounting' | 'technology';
+
+type RevenueBand =
+  | 'under-10m'
+  | '10m-50m'
+  | '50m-250m'
+  | '250m-1b'
+  | '1b-plus';
+
+type SalaryRow = {
+  sector: Sector;
+  title: string;
+  bySize: Record<RevenueBand, { low: number; mid: number; high: number }>;
+  byPercentile: Record<'p25' | 'p50' | 'p75' | 'p95', number>;
+};
+```
+
+All figures are AUD and stored as plain integers (no currency symbol in the data). The UI formats them as `A$NNN,NNN` at render time. Real numbers will be supplied by P&C.
+
+### UI components
+
+- `SalaryLookup` (client component): owns the tab state, selected sector, and selected filters.
+- `SectorSelect`: segmented control with two options (Finance & Accounting, Technology).
+- `JobTitleSelect`: searchable combobox (shadcn/ui Combobox), filtered by selected sector.
+- `RevenueBandSelect`: segmented control or select for the five bands.
+- `PercentileSelect`: segmented control with four options.
+- `SalaryResult`: displays the result panel for either mode, formatting AUD as `A$NNN,NNN`.
+
+## Shared Layout
+
+- `app/layout.tsx`: root layout. Imports Gilroy, applies dark theme, renders `<Navbar />` and `<Footer />` around `{children}`.
+- `components/navbar.tsx`: sticky top nav with the P&C logo (white version) on the left and links to all six pages on the right. Mobile: hamburger drawer.
+- `components/footer.tsx`: contact, social, copyright, P&C tagline "We introduce great talent to great companies."
+- `components/hero.tsx`: reusable hero with gradient or slate-950 background, title (Gilroy Bold, ALL CAPS), subtitle, optional CTA.
+- `components/section.tsx`: content section wrapper with consistent padding and max-width.
+- `components/cta.tsx`: reusable end-of-page CTA panel using the pink-purple-teal gradient.
+
+## Design System
+
+- Background: `bg-slate-950` site-wide.
+- Body text: off-white (`#EDEDED`) on dark, mid-gray (`#595959`) for secondary copy on light panels.
+- Accent: P&C pink `#FF4D68` for primary CTAs; teal `#00B7A9` for secondary highlights.
+- Gradient: `linear-gradient(135deg, #FF4D68 0%, #8F438D 50%, #00B7A9 100%)` on heroes and CTA blocks.
+- Headings: Gilroy Bold (h1) / Gilroy Medium (h2-h3), ALL CAPS.
+- Body: Gilroy Regular, sentence case. Never bold in running text.
+- Tailwind config extends colors with `pc.pink`, `pc.purple`, `pc.teal`, `pc.darkDeep`, `pc.darkMid`, `pc.offWhite`.
+- Font stack registered in Tailwind: `'Gilroy', 'Avenir', Arial, sans-serif`.
+
+## Responsiveness
+
+- Mobile-first Tailwind breakpoints (`sm`, `md`, `lg`, `xl`).
+- Navbar collapses to a hamburger drawer below `md`.
+- Hero typography scales with `clamp()` or Tailwind responsive classes.
+- Grid layouts on home overview cards: 1 col mobile, 2 col tablet, 3 col desktop.
+
+## Proposed File Structure
+
+```
+app/
+  layout.tsx
+  page.tsx                    // Home
+  salary-guide/page.tsx
+  interview-tips/page.tsx
+  salary-negotiation/page.tsx
+  counter-offer-advice/page.tsx
+  executive-playbook/page.tsx
+  globals.css                 // Tailwind base + Gilroy import
+components/
+  navbar.tsx
+  footer.tsx
+  hero.tsx
+  section.tsx
+  cta.tsx
+  ui/                         // shadcn/ui primitives
+lib/
+  utils.ts                    // cn() helper
+public/
+  pc_logo_white.svg
+  pc_logo_black.svg
+tailwind.config.ts
+postcss.config.js
+tsconfig.json
+package.json
+```
+
+## Build Order
+
+1. Scaffold Next.js 14 + TypeScript + Tailwind, install shadcn/ui, copy P&C logo assets into `/public`.
+2. Tailwind config: extend colors, font family, register Gilroy in `globals.css`.
+3. Build shared components: `Navbar`, `Footer`, `Hero`, `Section`, `Cta`. Wire them into `app/layout.tsx`.
+4. Build Home (`/`) with hero + six overview cards linking out.
+5. Build the five guide pages, each using `Hero` + `Section` blocks + `Cta`.
+6. Mobile QA pass and accessibility check (focus states, color contrast, semantic landmarks).
+
+## Content Workflow
+
+- Page copy (hero text, body sections, CTA wording, salary numbers, etc.) will be authored separately in Claude chat and supplied to this repo.
+- Claude Code's job is to build the structure, components, styling, and data wiring. Pages ship with placeholder copy and are populated as the real content arrives.
+- Each page is built so its text content lives in a single, easy-to-edit place (a typed `content` object per page or a co-located `*.content.ts` file) so swapping in finalised copy is a one-file edit.
+
+## Voice Reminders
+
+- No em dashes anywhere.
+- Active voice, punchy headings, warm but precise body copy.
+- Avoid corporate jargon.
