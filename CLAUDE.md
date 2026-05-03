@@ -213,6 +213,12 @@ package.json
 5. Build the five guide pages, each using `Hero` + `Section` blocks + `Cta`.
 6. Mobile QA pass and accessibility check (focus states, color contrast, semantic landmarks).
 
+## Content Workflow
+
+- Page copy (hero text, body sections, CTA wording, salary numbers, etc.) will be authored separately in Claude chat and supplied to this repo.
+- Claude Code's job is to build the structure, components, styling, and data wiring. Pages ship with placeholder copy and are populated as the real content arrives.
+- Each page is built so its text content lives in a single, easy-to-edit place (a typed `content` object per page or a co-located `*.content.ts` file) so swapping in finalised copy is a one-file edit.
+
 ## Voice Reminders
 
 - No em dashes anywhere.
