@@ -108,9 +108,14 @@ Every page follows the same shape: hero section, content sections, CTA block.
 
 The `/salary-guide` page offers two ways to review salaries. The user picks one via a tab/toggle at the top of the content area.
 
+- **Currency:** all figures shown in Australian dollars (AUD). Formatted as `A$120,000` (no decimals).
+- **Sectors covered (v1):** Finance & Accounting, Technology. The user picks a sector first, then a job title within that sector.
+- **Data source:** salary numbers supplied by P&C and dropped into `data/salaries.ts`. The UI is built against the schema with placeholder values until real data lands.
+
 ### Mode 1: By company size (revenue)
 
-- User picks a job title (searchable select).
+- User picks a sector (Finance & Accounting or Technology).
+- User picks a job title within that sector (searchable select).
 - User picks a company-size band by annual revenue. Proposed bands:
   - Under $10M
   - $10M–$50M
@@ -121,7 +126,8 @@ The `/salary-guide` page offers two ways to review salaries. The user picks one 
 
 ### Mode 2: By percentile
 
-- User picks a job title (same searchable select).
+- User picks a sector (Finance & Accounting or Technology).
+- User picks a job title within that sector.
 - User picks a percentile: 25th, 50th, 75th, or 95th.
 - Result panel shows the single salary figure at the chosen percentile, with a short explainer of what the percentile means (for example: 75th percentile is paid more than 75% of the market).
 
@@ -130,22 +136,33 @@ The `/salary-guide` page offers two ways to review salaries. The user picks one 
 Salary data lives in a typed JSON file (e.g. `data/salaries.ts`) keyed by job title, with both shapes per role:
 
 ```ts
+type Sector = 'finance-accounting' | 'technology';
+
+type RevenueBand =
+  | 'under-10m'
+  | '10m-50m'
+  | '50m-250m'
+  | '250m-1b'
+  | '1b-plus';
+
 type SalaryRow = {
+  sector: Sector;
   title: string;
   bySize: Record<RevenueBand, { low: number; mid: number; high: number }>;
   byPercentile: Record<'p25' | 'p50' | 'p75' | 'p95', number>;
 };
 ```
 
-Real numbers to be supplied by P&C. The UI is built against the schema first; data is dropped in later.
+All figures are AUD and stored as plain integers (no currency symbol in the data). The UI formats them as `A$NNN,NNN` at render time. Real numbers will be supplied by P&C.
 
 ### UI components
 
-- `SalaryLookup` (client component): owns the tab state and selected filters.
-- `JobTitleSelect`: searchable combobox (shadcn/ui Combobox).
+- `SalaryLookup` (client component): owns the tab state, selected sector, and selected filters.
+- `SectorSelect`: segmented control with two options (Finance & Accounting, Technology).
+- `JobTitleSelect`: searchable combobox (shadcn/ui Combobox), filtered by selected sector.
 - `RevenueBandSelect`: segmented control or select for the five bands.
 - `PercentileSelect`: segmented control with four options.
-- `SalaryResult`: displays the result panel for either mode.
+- `SalaryResult`: displays the result panel for either mode, formatting AUD as `A$NNN,NNN`.
 
 ## Shared Layout
 
