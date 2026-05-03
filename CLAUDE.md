@@ -96,13 +96,56 @@ A career guide microsite for P&C Partners that hosts executive-search content fo
 | Route | Purpose |
 | --- | --- |
 | `/` | Home. Hero plus overview cards linking to each guide section. |
-| `/salary-guide` | Salary benchmarks across roles and seniority. |
+| `/salary-guide` | Salary benchmarks. Two lookup modes: by company size (revenue band) or by percentile (25th / 50th / 75th / 95th). |
 | `/interview-tips` | Interview preparation guidance for executive candidates. |
 | `/salary-negotiation` | How to negotiate offers professionally. |
 | `/counter-offer-advice` | Handling counter-offers from current employers. |
 | `/executive-playbook` | Leadership playbook for senior hires. |
 
 Every page follows the same shape: hero section, content sections, CTA block.
+
+## Salary Guide — Lookup Modes
+
+The `/salary-guide` page offers two ways to review salaries. The user picks one via a tab/toggle at the top of the content area.
+
+### Mode 1: By company size (revenue)
+
+- User picks a job title (searchable select).
+- User picks a company-size band by annual revenue. Proposed bands:
+  - Under $10M
+  - $10M–$50M
+  - $50M–$250M
+  - $250M–$1B
+  - $1B+
+- Result panel shows the salary range (low / mid / high) for that role at that company size, plus typical bonus/STI and any notes.
+
+### Mode 2: By percentile
+
+- User picks a job title (same searchable select).
+- User picks a percentile: 25th, 50th, 75th, or 95th.
+- Result panel shows the single salary figure at the chosen percentile, with a short explainer of what the percentile means (for example: 75th percentile is paid more than 75% of the market).
+
+### Data shape (placeholder)
+
+Salary data lives in a typed JSON file (e.g. `data/salaries.ts`) keyed by job title, with both shapes per role:
+
+```ts
+type SalaryRow = {
+  title: string;
+  bySize: Record<RevenueBand, { low: number; mid: number; high: number }>;
+  byPercentile: Record<'p25' | 'p50' | 'p75' | 'p95', number>;
+};
+```
+
+Real numbers to be supplied by P&C. The UI is built against the schema first; data is dropped in later.
+
+### UI components
+
+- `SalaryLookup` (client component): owns the tab state and selected filters.
+- `JobTitleSelect`: searchable combobox (shadcn/ui Combobox).
+- `RevenueBandSelect`: segmented control or select for the five bands.
+- `PercentileSelect`: segmented control with four options.
+- `SalaryResult`: displays the result panel for either mode.
 
 ## Shared Layout
 
