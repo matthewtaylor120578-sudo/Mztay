@@ -50,6 +50,17 @@ Use these exact values when driving Lusha through MCP or the API; the dashboard 
 
 When names exist but contact data does not (conference delegates, an ATS export missing phones, a revived old longlist), use CSV enrichment instead of re-searching. Match rates improve sharply with better keys, in this order: LinkedIn URL (strongest), then full name + company domain, then full name + company name. Exact upload format and column mapping: see `platform-map.md`.
 
+## Playbook D: refresh an old contact list
+
+Matt runs these as standing projects: take an old contact list and bring it back to life by finding where everyone works now. Phone and email reveals are pre-approved for confirmed profiles on these projects (see the standing instructions in `SKILL.md`).
+
+1. **Normalise the input.** Load the old list (CSV or ATS export) into the longlist schema from `data-handling.md`, keeping the original columns alongside for comparison.
+2. **Locate each person on LinkedIn Recruiter.** Search by name plus last known company or title. Confirm identity before updating anything: check the career history against the old record so a namesake never overwrites a real contact.
+3. **Record the move.** Current title, current company, location, and the LinkedIn URL if the old list lacked one. People who have not moved get a fresh capture_date and a confirmed-current status.
+4. **Always pull contact details.** For every confirmed profile, fetch phone and email through Lusha; search-and-enrich keyed on the LinkedIn URL does it in one call. A reopened conversation with a moved contact is worth far more than the roughly 6 credits it costs.
+5. **Write back cleanly.** Updated status, source, and capture_date on every row, then the dedupe and off-limits checks before anyone works the list.
+6. **Surface the gold, do not bury it.** Anyone who moved into a hiring seat (function leader or talent owner) is a same-week BD call. Anyone who moved into a target company is a live candidate lead. Put both in the handover summary, not just the CSV.
+
 ## Working with the LinkedIn extension
 
 - The extension reveals contact details on the profile or search page you are viewing and can save people directly to a Lusha list.

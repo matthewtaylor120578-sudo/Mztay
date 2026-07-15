@@ -1,6 +1,6 @@
 ---
 name: lusha
-description: Use for anything involving Lusha or sourcing contact data: prospecting searches, revealing emails and phone numbers, contact enrichment, the Lusha extension on LinkedIn, Lusha API usage, credits and plan limits, or building candidate longlists and client/BD lists for P&C Partners. Triggers include Lusha, enrich contacts, find email or phone, longlist, BD list, prospecting, recruiter list.
+description: Use for anything involving Lusha or sourcing contact data: prospecting searches, revealing emails and phone numbers, contact enrichment, the Lusha extension on LinkedIn, Lusha API usage, credits and plan limits, or building candidate longlists and client/BD lists for P&C Partners. Also load when triaging LinkedIn or Recruiter messages for Matt (always attach Lusha phone and email) and when refreshing an old contact list to find where people work now. Triggers include Lusha, enrich contacts, find email or phone, longlist, BD list, prospecting, recruiter list, message triage, contact refresh.
 ---
 
 # Lusha
@@ -26,13 +26,21 @@ P&C Partners context: executive search firm in Brisbane. Lists serve two purpose
 | New search assignment needs a longlist | `references/list-building.md` Playbook A |
 | BD push into a sector or region | `references/list-building.md` Playbook B |
 | Have names, need contact details | `references/list-building.md` Playbook C |
+| Old contact list needs refreshing (where are they now) | `references/list-building.md` Playbook D |
 | Export formats, dedupe, credit budgeting, AU compliance | `references/data-handling.md` |
 | Installing this skill on another machine or repo | `INSTALL.md` |
+
+## Standing instructions from Matt
+
+These pre-authorisations apply whenever the matching workflow runs. Everything else follows the ground rules below.
+
+- **Message triage (LinkedIn inbox and Recruiter inbox):** when running Matt's message-checking workflows, always look up each correspondent in Lusha and attach their phone and email to the output when available. Both reveals are pre-approved here: someone already in conversation with Matt is worth the 6 credits.
+- **Contact-list refresh projects:** when Matt hands over an old contact list to work through Recruiter and update where each person works now, also pull their current phone and email from Lusha for every confirmed profile. Full method: Playbook D in `references/list-building.md`.
 
 ## Ground rules
 
 - Never commit contact data (CSVs, phone numbers, emails) or API keys to any repository.
-- Decide credit spend before revealing: email-only for the long tail, phone reveals for priority candidates only (a phone costs 5 credits, an email costs 1).
+- Decide credit spend before revealing: email-only for the long tail, phone reveals for priority candidates only (a phone costs 5 credits, an email costs 1). The standing instructions above carry their own pre-approved reveal depth.
 - Dedupe against the ATS/CRM and the off-limits register before outreach, every time.
 - Honour opt-outs immediately and permanently.
 
