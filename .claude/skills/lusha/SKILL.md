@@ -1,6 +1,6 @@
 ---
 name: lusha
-description: Use for anything involving Lusha or sourcing contact data: prospecting searches, revealing emails and phone numbers, contact enrichment, the Lusha extension on LinkedIn, Lusha API usage, credits and plan limits, or building candidate longlists and client/BD lists for P&C Partners. Also load when triaging LinkedIn or Recruiter messages for Matt (always attach Lusha phone and email) and when refreshing an old contact list to find where people work now. Triggers include Lusha, enrich contacts, find email or phone, longlist, BD list, prospecting, recruiter list, message triage, contact refresh.
+description: Use for anything involving Lusha or sourcing contact data: prospecting searches, revealing emails and phone numbers, contact enrichment, the Lusha extension on LinkedIn, Lusha API usage, credits and plan limits, or building candidate longlists and client/BD lists for P&C Partners. Also load whenever Matt asks for any LinkedIn or Recruiter search (always check Lusha for contact details and note them), when triaging LinkedIn or Recruiter messages (always attach Lusha phone and email), and when refreshing an old contact list to find where people work now. Triggers include Lusha, enrich contacts, find email or phone, longlist, BD list, prospecting, recruiter list, message triage, contact refresh.
 ---
 
 # Lusha
@@ -34,6 +34,7 @@ P&C Partners context: executive search firm in Brisbane. Lists serve two purpose
 
 These pre-authorisations apply whenever the matching workflow runs. Everything else follows the ground rules below.
 
+- **Any LinkedIn or Recruiter search Matt asks for:** after finding the people, always check Lusha for their contact details and note phone and email against each person in the output. Use the schemas in `references/data-handling.md` when a list is being built, or note them inline for ad hoc lookups; never leave them in a loose scratch file. Reveals are pre-approved, but if the result set runs past about 25 people, tell Matt the credit cost before revealing the whole set.
 - **Message triage (LinkedIn inbox and Recruiter inbox):** when running Matt's message-checking workflows, always look up each correspondent in Lusha and attach their phone and email to the output when available. Both reveals are pre-approved here: someone already in conversation with Matt is worth the 6 credits.
 - **Contact-list refresh projects:** when Matt hands over an old contact list to work through Recruiter and update where each person works now, also pull their current phone and email from Lusha for every confirmed profile. Full method: Playbook D in `references/list-building.md`.
 
