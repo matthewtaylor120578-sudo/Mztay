@@ -47,7 +47,8 @@ ls /path/to/your-os-repo/.claude/skills/lusha
 ```
 SKILL.md                      Entry point: when to use, decision gate, ground rules
 references/platform-map.md    The Lusha dashboard mapped screen by screen
-references/api.md             API access, auth, endpoints, credits and limits
+references/api.md             The v3 REST API catalogue mapped to P&C playbooks
+references/mcp.md             Hosted MCP server setup for Claude and other clients
 references/list-building.md   Candidate longlist and client/BD list playbooks
 references/data-handling.md   CSV schemas, dedupe, credits, AU compliance, storage
 INSTALL.md                    This file

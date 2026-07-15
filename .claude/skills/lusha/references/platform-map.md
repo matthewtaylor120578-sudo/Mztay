@@ -48,17 +48,23 @@ Search box ("What workflow are you looking for?") with two filters: All connecto
 
 **Templates** (pre-built workflows, carousel): Auto-search & enrich leads (Google Sheets), Contact enrichment automation (Google Sheets), Auto-enrich HubSpot contacts (Make). Each has a Try it link, some have walkthrough videos.
 
-### APIs tab
+### APIs tab (captured)
 
-Pending capture. Expected to list the callable APIs matching the use-case cards: contact search, contact enrichment, company enrichment, signal enrichment **(verify)**. Details will live in `api.md`.
+"Explore endpoints by category. From search to enrichment. All your integrations, one place." Eight endpoint categories, each with a Try console: Search, Prospecting, Enrich, Signals, Lookalike, Search & Enrich, Website Visits, Decision Makers. Full catalogue, parameters, and playbook mapping: `api.md`.
 
 ### Webhooks tab
 
 Pending capture.
 
-### MCP tab
+### MCP tab (captured)
 
-Pending capture. This is the priority screen: it should show how to connect Claude (and other clients) to Lusha over MCP, which would let the local Claude Code session search and enrich directly.
+Headline: "Connect Lusha to your AI tools". Pitch: pull Lusha data directly into ChatGPT, Claude, or any AI tool with no tab switching, no copy-pasting, no code.
+
+- **Your MCP URL:** `https://mcp.lusha.com/` (with copy button)
+- Client setup cards, each with a Set up link: **Claude** (Settings > Connectors > Add custom connector), **ChatGPT** (Workspace Management > Apps & Connectors), **n8n** (AI Agent node > MCP Client tool), **Cursor** (Settings > MCP > Add new server)
+- "Review MCP documentation" links to docs.lusha.com
+
+Full connection guide, including Claude Code CLI setup for the Mac: `mcp.md`.
 
 ### Manage API Keys tab
 

@@ -11,15 +11,17 @@ P&C Partners context: executive search firm in Brisbane. Lists serve two purpose
 
 ## Decision gate
 
-1. **Repeatable or bulk task, API key available?** Use the API path: read `references/api.md`.
-2. **Ad hoc sourcing, judgement-heavy, or no API key?** Use the dashboard and extension path: read `references/platform-map.md` for where everything lives.
-3. **Building any list, either path:** read `references/list-building.md` for the playbook and `references/data-handling.md` for schemas, dedupe, credits and compliance.
+1. **Lusha MCP tools available in this session?** Use them directly; ground rules and setup in `references/mcp.md`. Lusha hosts an MCP server at `https://mcp.lusha.com/` with first-class Claude support.
+2. **Repeatable or bulk task, scripted?** Use the v3 REST API: read `references/api.md`.
+3. **Ad hoc sourcing, judgement-heavy, or neither of the above configured?** Use the dashboard and extension path: read `references/platform-map.md` for where everything lives.
+4. **Building any list, whichever path:** read `references/list-building.md` for the playbook and `references/data-handling.md` for schemas, dedupe, credits and compliance.
 
 ## What to read when
 
 | Situation | Read |
 |---|---|
 | Where is X in the Lusha dashboard, what does this screen do | `references/platform-map.md` |
+| Connecting Claude, Claude Code, or other agents to Lusha | `references/mcp.md` |
 | Automating lookups or enrichment, endpoints, auth, limits | `references/api.md` |
 | New search assignment needs a longlist | `references/list-building.md` Playbook A |
 | BD push into a sector or region | `references/list-building.md` Playbook B |
@@ -34,4 +36,4 @@ P&C Partners context: executive search firm in Brisbane. Lists serve two purpose
 - Dedupe against the ATS/CRM and the off-limits register before outreach, every time.
 - Honour opt-outs immediately and permanently.
 
-<!-- TODO(pending dashboard screenshots): confirm plan name, credit allowance, API availability, connector list, and exact filter names, then finalise platform-map.md and api.md and remove this note. -->
+<!-- TODO(pending dashboard screenshots): capture Manage API Keys and Webhooks tabs, plan/billing detail, and one Try console request (base URL + auth header + credit cost), then clear the verify lists in api.md and mcp.md and remove this note. -->
