@@ -21,7 +21,7 @@ Every category has a Try console in the dashboard (the Try buttons on each card)
 
 ## The two-step pattern
 
-The catalogue splits discovery from data retrieval: prospecting and search find people and return identifiers, enrich turns an ID into full contact data. Treat the enrich step as the moment credits are spent, and the search step as free-to-cheap **(verify exact charging per endpoint in the Try console or docs)**. Search & Enrich collapses both into one call for when you already hold a strong identifier like a LinkedIn URL.
+The catalogue splits discovery from data retrieval: prospecting and search find people and return identifiers, enrich turns an ID into full contact data. Confirmed pricing (via the live MCP `account_usage` call, July 2026): searches cost 1 credit per 25 results, and the reveal is where real spend happens: email 1 credit, phone 5 credits, company profile 1 credit each. Search & Enrich collapses both into one call for when you already hold a strong identifier like a LinkedIn URL.
 
 ## Mapping endpoints to P&C playbooks
 
@@ -53,11 +53,16 @@ API keys are issued under API Hub > Manage API Keys. Keys are account-level; eac
 
 Account state at capture: one unnamed key from 27.02.2023, last used 19.05.2026, 15 lifetime credits. Identify what uses it before rotating.
 
-## Still to verify before production use
+## Confirmed via the live MCP connection, 15 July 2026
 
-- [ ] Base URL and auth header format (one Try console screenshot settles both)
-- [ ] Credit cost per endpoint, especially enrich vs search vs decision-makers
-- [ ] Rate limits and bulk batch sizes
+- Credit pricing: searches 1 credit per 25 results; email reveal 1; phone reveal 5; company reveal 1; lookalike 1 per 5 results; signals 1 per entity shown; recommendations reveal 1 each
+- Rate limits: 300 requests/minute, 1,800/hour, 18,000/day; HTTP 429 beyond
+- Plan: Premium, annual, period ends 18 July 2026. Credit pool is account-level: 17,008 total, 10,348 remaining at capture
+- MCP tool calls bill against the same account credit pool as the dashboard and REST API (see `mcp.md` for the verified tool list)
+- Signal types: contacts have `promotion` and `companyChange`; companies have hiring surges (overall, by department, by location), headcount changes over 1 to 12 months, IT spend and web traffic shifts, and seven news categories
+
+## Still to verify before raw REST use
+
+- [ ] Base URL and auth header format (one Try console screenshot settles both; the MCP path needs neither)
 - [ ] Pagination shape on prospecting endpoints
-- [ ] Event types offered in the Create Webhook flow (webhook subscriptions push company and contact signals; none configured yet, see `platform-map.md`)
-- [ ] Whether MCP tool calls (see `mcp.md`) bill the same as direct API calls
+- [ ] Event types offered in the Create Webhook flow

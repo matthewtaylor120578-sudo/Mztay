@@ -49,10 +49,11 @@ Dedupe against: the ATS/CRM, prior Lusha lists, and the off-limits register. Run
 
 ## Credit discipline
 
-- Decide reveal depth before revealing anything: email-only for the long tail, email + phone for the A-band.
+- Real prices on the P&C Premium plan (verified over MCP, July 2026): email reveal 1 credit, phone reveal 5 credits, company reveal 1 credit, searches 1 credit per 25 results, lookalike 1 credit per 5 results, signals 1 credit per entity shown.
+- Decide reveal depth before revealing anything: email-only for the long tail, email + phone for the A-band. Worked example: a 100-person longlist with emails for everyone (100 credits) plus phones for a 20-person A-band (100 credits) lands around 200 credits, plus a handful for searches.
 - Check existing lists and the CRM before revealing; the contact may already be on file from a previous assignment.
-- Track roughly credits-per-assignment. If a longlist of 100 burns materially more than 100 credits, the search filters are too loose.
-- Plan allowances, rollover behaviour, and whether re-revealing a contact re-charges: confirm against the plan screen (see `platform-map.md`). Treat re-reveals as chargeable until confirmed otherwise.
+- Track credits per assignment. Account state at July 2026: 10,348 remaining of 17,008, plan year renews 18 July 2026. Confirm rollover behaviour before the renewal date.
+- Treat re-reveals as chargeable until confirmed otherwise.
 
 ## Data hygiene
 

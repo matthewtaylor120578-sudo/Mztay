@@ -5,9 +5,10 @@ Mapped screen by screen from Matthew Taylor's live dashboard, July 2026. Facts b
 ## Account snapshot (15 July 2026)
 
 - Account: Matthew Taylor
-- Credits available: **10,348**
-- An Upgrade button shows next to the credit balance; plan name and renewal cadence not yet captured **(verify)**
-- API access: **enabled**. The API Hub shows a Copy API key button and a Manage API Keys tab
+- Plan: **Premium**, annual, current period 18 July 2025 to 18 July 2026 (verified live over MCP)
+- Credits: **10,348 remaining** of 17,008 (6,660 used). The plan year ends 18 July 2026: confirm whether unused credits roll over before renewal
+- Rate limits: 300 requests/minute, 1,800/hour, 18,000/day
+- API access: **enabled** (Copy API key button, Manage API Keys tab), and the hosted MCP server is connected and verified from Claude
 
 ## Global navigation (left sidebar)
 
@@ -47,6 +48,8 @@ Search box ("What workflow are you looking for?") with two filters: All connecto
 **Connectors** (no-code: "Start fast with no code search, enrich, and sync in minutes"): Zapier, Make, Google Sheets, n8n, Pipedream, Workato. Carousel arrows suggest possibly more; a Request connector button exists for missing ones.
 
 **Templates** (pre-built workflows, carousel): Auto-search & enrich leads (Google Sheets), Contact enrichment automation (Google Sheets), Auto-enrich HubSpot contacts (Make). Each has a Try it link, some have walkthrough videos.
+
+Where to find templates: API Hub > Connectors tab, scroll below the connector row; the View templates link on each use-case card filters the gallery to that use case. P&C fit: templates are the zero-code path for always-on automations, for example the Google Sheets auto-search and enrich template as a self-refreshing list feeder the whole team can read. For ad hoc work, the MCP connection now covers the same ground through Claude directly.
 
 ### APIs tab (captured)
 
@@ -92,10 +95,9 @@ Key governance for P&C:
 
 ## Screens still to capture
 
-- [ ] Plan / billing / credits detail (plan name, monthly allowance, rollover, seat sharing)
-- [ ] One Try console request from the APIs tab (settles base URL, auth header, credit cost per call)
-- [ ] Prospecting search with the filter panel open
+- [ ] One Try console request from the APIs tab (settles REST base URL and auth header; the MCP path needs neither)
 - [ ] Engagement surface
 - [ ] CSV enrichment upload screen
+- [ ] Optional: Prospecting search UI (canonical filter values already verified over MCP, listed in `list-building.md`)
 
-Captured so far: all five API Hub tabs (APIs, Connectors, Webhooks, MCP, Manage API Keys).
+Captured so far: all five API Hub tabs (APIs, Connectors, Webhooks, MCP, Manage API Keys). Plan, credits, pricing, rate limits, filter taxonomies and signal types verified live over the MCP connection on 15 July 2026.

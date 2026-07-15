@@ -46,14 +46,26 @@ Command shape is current as of July 2026; `claude mcp add --help` is the source 
 
 Lusha also links "Review MCP documentation" from this tab (on docs.lusha.com) for deeper detail.
 
-## Verify on first connect
+## Verified live, 15 July 2026
 
-Record the answers back into this file the first time the connection is live:
+The connector was added through claude.ai (Settings > Connectors > Add custom connector) with an OAuth sign-in and worked first try. Tools surface in Claude Code sessions as `mcp__Lusha__*`. The server exposes 24 tools:
 
-- [ ] Exact tool names the server exposes (expect contact search, contact enrichment, company enrichment, signal variants)
-- [ ] Auth model: OAuth sign-in vs API key, and which Lusha seat the usage bills to
-- [ ] Credit consumption: treat every MCP enrichment as a chargeable reveal (same as a dashboard reveal) until proven otherwise
-- [ ] Rate limits and any bulk caps
+| Group | Tools | Notes |
+|---|---|---|
+| Account | `account_usage`, `purchase_options` | Balance, plan, rate limits, per-action pricing; quick-buy credit packages. Free |
+| Search | `contacts_search`, `companies_search` | Look up known people or companies by identifier |
+| Prospecting | `prospecting_contact_search`, `prospecting_contact_filters`, `prospecting_contact_enrich`, and the three `prospecting_company_*` equivalents | Filter-based discovery. The `*_filters` tools resolve canonical filter values and are free; enrich spends credits |
+| Decision makers | `decision_makers_search` | Key people at a target company (BD Playbook B) |
+| Lookalike | `lookalike_contacts`, `lookalike_companies` | Similar profiles from a seed (longlist widening) |
+| Recommendations | `recommendations_contacts`, `recommendations_companies`, plus `*_filters` for each | Lusha-suggested prospects |
+| Signals | `signals_contacts_get`, `signals_contacts_search`, `signals_contact_filters`, and the three company equivalents | Job changes, promotions, hiring surges, news |
+| Website visits | `website_visits_search` | Companies visiting tracked sites |
+
+**Credit pricing** (from `account_usage`, P&C Premium plan): contact or company search 1 credit per 25 results; email reveal 1 credit; phone reveal 5 credits; company reveal 1 credit; lookalike 1 credit per 5 results; showing signals 1 credit per entity; recommendations reveal 1 credit each. All `*_filters` tools and `account_usage` are free.
+
+**Rate limits:** 300 requests/minute, 1,800/hour, 18,000/day, shared with the REST API; HTTP 429 beyond. MCP usage draws on the same account credit pool as the dashboard.
+
+**Signal taxonomy:** contact signals are `promotion`, `companyChange`, `allSignals`. Company signals include `surgeInHiring` plus by-department and by-location variants, headcount increase and decrease over 1, 3, 6 and 12 months, IT spend and website traffic shifts, and news categories (people, financial events, corporate strategy, commercial activity, risk, market intelligence, product activity).
 
 ## Ground rules for agent use
 

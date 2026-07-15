@@ -16,14 +16,23 @@ Never start searching without a written spec. Capture it in this shape:
 | Volume goal | 60 to 120 names is a typical longlist | 30 to 50 well-qualified beats 500 generic |
 | Credit budget | Reveal depth: email only vs email + phone | Same decision, made before revealing |
 
-Australian title synonyms matter. Search every variant: Chief People Officer / GM People and Culture / Head of HR; CFO / Finance Director / GM Finance; MD / CEO / General Manager. Lusha matches titles fairly literally, so one search per variant beats one broad search (confirm exact filter behaviour in `platform-map.md`).
+Australian title synonyms matter. Search every variant: Chief People Officer / GM People and Culture / Head of HR; CFO / Finance Director / GM Finance; MD / CEO / General Manager. Lusha matches titles fairly literally, so one search per variant beats one broad search.
+
+## Canonical Lusha filter values (verified over MCP, July 2026)
+
+Use these exact values when driving Lusha through MCP or the API; the dashboard mirrors them.
+
+- **Seniority:** founder, partner, c-suite, vice president, director, manager, senior, entry, intern, other. Default band for exec search: c-suite, vice president, director, plus partner and founder where relevant.
+- **Departments:** Business Development, Consulting, Customer Service, Engineering & Technical, Finance, General Management, Health Care & Medical, Human Resources, Information Technology, Legal, Marketing, Operations, Other, Product, Research & Analytics, Sales.
+- **Company size bands:** 1-10, 11-50, 51-200, 201-500, 501-1,000, 1,001-5,000, 5,001-10,000, 10,001-100,000, 100,001+.
+- **Trigger signals for BD:** company signals `surgeInHiring`, `surgeInHiringByDepartment`, `surgeInHiringByLocation`, headcount increases over 3 or 6 months, `peopleNews`, `financialEventsNews`; contact signals `promotion` and `companyChange`. A promotion or company change on a known contact is a same-week reason to call.
 
 ## Playbook A: candidate longlist for a search assignment
 
 1. **Build the company universe first.** Company-first beats people-first for exec search: list competitors, adjacent industries, and companies known for developing this function. Use Lusha company search filters (industry, size, location) or import a named target list.
 2. **Run people searches inside that universe.** Filter on current job title (one synonym at a time), seniority, department, and location. Screen results against the brief before revealing anything.
 3. **Cross-reference on LinkedIn.** For profiles that need judgement (scope of role, tenure, team size), open them on LinkedIn and use the Lusha extension to reveal contact details in place. This is the highest-precision path for exec search.
-4. **Reveal in bands to conserve credits.** Reveal email for the full longlist. Reveal phone only for the A-band (priority candidates you will call first). See credit discipline in `data-handling.md`.
+4. **Reveal in bands to conserve credits.** Reveal email for the full longlist. Reveal phone only for the A-band (priority candidates you will call first): a phone costs 5 credits against 1 for an email. See credit discipline in `data-handling.md`.
 5. **Save to a named Lusha list per assignment.** Naming convention: `YYYY-MM code role`, for example `2026-07 DN-CFO longlist`. One assignment, one list. Never mix assignments.
 6. **Export to CSV** and map to the longlist schema in `data-handling.md`.
 7. **QA pass before the list is real:** dedupe against the ATS/CRM, run the off-limits check, flag stale records (person appears to have moved roles), verify a sample of emails.

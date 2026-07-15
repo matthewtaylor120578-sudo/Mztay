@@ -32,8 +32,8 @@ P&C Partners context: executive search firm in Brisbane. Lists serve two purpose
 ## Ground rules
 
 - Never commit contact data (CSVs, phone numbers, emails) or API keys to any repository.
-- Decide credit spend before revealing: email-only for the long tail, phone reveals for priority candidates only.
+- Decide credit spend before revealing: email-only for the long tail, phone reveals for priority candidates only (a phone costs 5 credits, an email costs 1).
 - Dedupe against the ATS/CRM and the off-limits register before outreach, every time.
 - Honour opt-outs immediately and permanently.
 
-<!-- TODO(pending dashboard screenshots): capture plan/billing detail and one Try console request (base URL + auth header + credit cost), then clear the verify lists in api.md and mcp.md and remove this note. -->
+<!-- TODO: only raw-REST details remain unverified (base URL, auth header, pagination: one Try console screenshot settles them) plus the Create Webhook event list. The MCP path is fully verified. Remove this note once those land in api.md. -->
