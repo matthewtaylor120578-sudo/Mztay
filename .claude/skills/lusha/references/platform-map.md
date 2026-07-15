@@ -18,10 +18,10 @@ Mapped screen by screen from Matthew Taylor's live dashboard, July 2026. Facts b
 | Home | Dashboard landing |
 | Prospecting | People and company search (filters: job title, seniority, industry, location and more) |
 | All tables / Recents | Saved prospecting tables and recent work |
-| AI recommendations | Lusha-suggested prospects **(verify what drives it)** |
+| AI recommendations | Lusha-suggested prospects; exposed over MCP as the `recommendations_*` tools (see `mcp.md`). Ranking logic not documented |
 | Website visitors (Beta) | Identifies companies visiting your website |
 | API & connectors | The API Hub, mapped below |
-| MCP (Claude, ChatGPT, n8n, ...) | First-party MCP integration surface. Highest-value integration for the local Claude Code setup. Details pending capture |
+| MCP (Claude, ChatGPT, n8n, ...) | First-party MCP integration surface, captured and verified live: see the MCP tab below and `mcp.md` |
 | Engagement | Outreach/sequences surface **(verify scope)** |
 | CSV enrichment | Upload a CSV of names/companies, get contact data back (Playbook C in `list-building.md`) |
 | Resources | Help and learning content |
@@ -61,7 +61,7 @@ Where to find templates: API Hub > Connectors tab, scroll below the connector ro
 
 State at capture: none created yet ("No Webhook created").
 
-What this enables for P&C: subscribe a watched set of contacts (past candidates, BD targets, placed candidates' managers) or companies to signal events, and Lusha pushes the event to your endpoint. A job change or promotion signal arriving as a push is a same-day reason to call, instead of a quarterly list refresh discovering it months later. Pair with a connector (n8n, Make, Zapier) to turn the push into a CRM task or alert. Exact event types offered appear in the Create Webhook flow **(verify when first configuring one)**.
+What this enables for P&C: subscribe a watched set of contacts (past candidates, BD targets, placed candidates' managers) or companies to signal events, and Lusha pushes the event to your endpoint. A job change or promotion signal arriving as a push is a same-day reason to call, instead of a quarterly list refresh discovering it months later. Pair with a connector (n8n, Make, Zapier) to turn the push into a CRM task or alert. Exact event types offered appear in the Create Webhook flow **(verify when first configuring one; likely the signal taxonomy verified in `mcp.md`)**.
 
 ### MCP tab (captured)
 

@@ -45,7 +45,7 @@ Playbooks live in `list-building.md`; this is which endpoint powers which step.
 - `v3/contacts/lookalike` seeded with the contactId of a standout candidate returns similar profiles. Use it after the first shortlist review to widen a thin longlist
 
 **Website visitors (tied to the sidebar Beta feature):**
-- `v3/companies/website-visits` turns p&cpartners site traffic into named companies. A company repeatedly visiting the site is a warm BD signal
+- `v3/companies/website-visits` turns P&C website traffic into named companies. A company repeatedly visiting the site is a warm BD signal
 
 ## Authentication
 
