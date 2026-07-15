@@ -59,5 +59,5 @@ Account state at capture: one unnamed key from 27.02.2023, last used 19.05.2026,
 - [ ] Credit cost per endpoint, especially enrich vs search vs decision-makers
 - [ ] Rate limits and bulk batch sizes
 - [ ] Pagination shape on prospecting endpoints
-- [ ] Webhooks tab contents (events for async jobs, job-change alerts)
+- [ ] Event types offered in the Create Webhook flow (webhook subscriptions push company and contact signals; none configured yet, see `platform-map.md`)
 - [ ] Whether MCP tool calls (see `mcp.md`) bill the same as direct API calls

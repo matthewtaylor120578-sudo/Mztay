@@ -52,9 +52,13 @@ Search box ("What workflow are you looking for?") with two filters: All connecto
 
 "Explore endpoints by category. From search to enrichment. All your integrations, one place." Eight endpoint categories, each with a Try console: Search, Prospecting, Enrich, Signals, Lookalike, Search & Enrich, Website Visits, Decision Makers. Full catalogue, parameters, and playbook mapping: `api.md`.
 
-### Webhooks tab
+### Webhooks tab (captured)
 
-Pending capture.
+"Webhook Subscriptions: create and manage webhook subscriptions for company and contact signals", with a Create Webhook button. Subscription table columns: Name, Entity count, Type, Event type, Last updated, Status, Actions.
+
+State at capture: none created yet ("No Webhook created").
+
+What this enables for P&C: subscribe a watched set of contacts (past candidates, BD targets, placed candidates' managers) or companies to signal events, and Lusha pushes the event to your endpoint. A job change or promotion signal arriving as a push is a same-day reason to call, instead of a quarterly list refresh discovering it months later. Pair with a connector (n8n, Make, Zapier) to turn the push into a CRM task or alert. Exact event types offered appear in the Create Webhook flow **(verify when first configuring one)**.
 
 ### MCP tab (captured)
 
@@ -88,11 +92,10 @@ Key governance for P&C:
 
 ## Screens still to capture
 
-- [ ] Webhooks tab
 - [ ] Plan / billing / credits detail (plan name, monthly allowance, rollover, seat sharing)
 - [ ] One Try console request from the APIs tab (settles base URL, auth header, credit cost per call)
 - [ ] Prospecting search with the filter panel open
 - [ ] Engagement surface
 - [ ] CSV enrichment upload screen
 
-Captured so far: APIs, Connectors, MCP, Manage API Keys tabs.
+Captured so far: all five API Hub tabs (APIs, Connectors, Webhooks, MCP, Manage API Keys).

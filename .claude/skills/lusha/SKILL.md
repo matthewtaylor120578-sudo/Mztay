@@ -36,4 +36,4 @@ P&C Partners context: executive search firm in Brisbane. Lists serve two purpose
 - Dedupe against the ATS/CRM and the off-limits register before outreach, every time.
 - Honour opt-outs immediately and permanently.
 
-<!-- TODO(pending dashboard screenshots): capture Manage API Keys and Webhooks tabs, plan/billing detail, and one Try console request (base URL + auth header + credit cost), then clear the verify lists in api.md and mcp.md and remove this note. -->
+<!-- TODO(pending dashboard screenshots): capture plan/billing detail and one Try console request (base URL + auth header + credit cost), then clear the verify lists in api.md and mcp.md and remove this note. -->
