@@ -66,9 +66,17 @@ Headline: "Connect Lusha to your AI tools". Pitch: pull Lusha data directly into
 
 Full connection guide, including Claude Code CLI setup for the Mac: `mcp.md`.
 
-### Manage API Keys tab
+### Manage API Keys tab (captured)
 
-Pending capture. Never paste an unredacted key anywhere, including this repo.
+"Create and manage account API keys" with a Create new Key button. Keys are account-level, listed with: Name, masked key value (reveal and copy controls), Created date, Created by, Last used, and per-key Credit usage with a **Set limit** control.
+
+State at capture (15 July 2026): a single unnamed key, created 27.02.2023, last used 19.05.2026, 15 credits used through it, no limit set. Something used it as recently as May 2026, so identify what depends on it before rotating or deleting.
+
+Key governance for P&C:
+
+- One named key per integration (for example `claude-mac`, `n8n-lists`), never shared across tools
+- Set a credit limit on every key so a runaway automation cannot drain the account balance
+- Key values live in the password manager or macOS keychain only; never in repos, chats, or documents
 
 ## How this maps to P&C work
 
@@ -80,11 +88,11 @@ Pending capture. Never paste an unredacted key anywhere, including this repo.
 
 ## Screens still to capture
 
-- [ ] APIs tab
-- [ ] MCP tab (priority)
 - [ ] Webhooks tab
-- [ ] Manage API Keys tab (redact key values)
 - [ ] Plan / billing / credits detail (plan name, monthly allowance, rollover, seat sharing)
-- [ ] Prospecting search with filter panel open
+- [ ] One Try console request from the APIs tab (settles base URL, auth header, credit cost per call)
+- [ ] Prospecting search with the filter panel open
 - [ ] Engagement surface
 - [ ] CSV enrichment upload screen
+
+Captured so far: APIs, Connectors, MCP, Manage API Keys tabs.

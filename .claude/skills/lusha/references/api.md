@@ -49,7 +49,9 @@ Playbooks live in `list-building.md`; this is which endpoint powers which step.
 
 ## Authentication
 
-API keys are issued under API Hub > Manage API Keys. Header name and format **(verify: capture the Manage API Keys tab or one Try console request)**. Keys live in the macOS keychain or password manager only, injected via environment variable in scripts. Never in a repo, chat, or document.
+API keys are issued under API Hub > Manage API Keys. Keys are account-level; each shows created date, last used date, and per-key credit usage, and supports an optional credit limit. Create one named, capped key per integration (governance detail in `platform-map.md`). Header name and format **(verify: one Try console request settles it)**. Keys live in the macOS keychain or password manager only, injected via environment variable in scripts. Never in a repo, chat, or document.
+
+Account state at capture: one unnamed key from 27.02.2023, last used 19.05.2026, 15 lifetime credits. Identify what uses it before rotating.
 
 ## Still to verify before production use
 
